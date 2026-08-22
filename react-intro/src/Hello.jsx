@@ -11,3 +11,8 @@ function Hello() {
 }
 
 export default Hello;
+
+//**Requirements:**
+// - the component name must start with a capital letter (`Hello`);
+// - all elements must be wrapped in **one root element**;
+// - add `export default` at the end of the file.
