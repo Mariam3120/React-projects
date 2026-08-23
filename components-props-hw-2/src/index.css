@@ -1,0 +1,18 @@
+:root {
+  --color-pink: #f4d7d7;
+  --color-link: #020202;
+  --color-red: #c0392f;
+  --color-cream: #fdf3dd;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-pink);
+  color: var(--color-link);
+  font-family: system-ui, sans-serif;
+}

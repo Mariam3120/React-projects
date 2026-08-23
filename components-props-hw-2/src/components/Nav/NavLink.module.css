@@ -1,0 +1,9 @@
+.link {
+  color: var(--color-link);
+  font-size: 32px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--color-red);
+}
