@@ -1,0 +1,42 @@
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 40px;
+}
+
+.left {
+  flex: 1;
+  align-self: center;
+}
+.center {
+  flex: 2;
+  text-align: center;
+}
+.center h1{
+  margin-top: 0;
+  font-size: 70px;
+  font-weight: 400;
+}
+.center p{
+   margin-top: 0;
+  font-size: 35px;
+  font-weight: 400;
+}
+.right {
+  flex: 1;
+  text-align: center;
+}
+
+.left img {
+  width: 303px;
+}
+.right img {
+  width: 244px;
+  border-radius: 34px;
+}
+
+.right button {
+  margin-right: 100px;
+  margin-top: 70px;
+}
