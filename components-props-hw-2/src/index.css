@@ -5,6 +5,8 @@
   --color-cream: #fdf3dd;
   --color-btn: #D88C96;
   
+  --font-heading: "Kaushan Script", cursive;
+  --font-body:"Bad Script", cursive;
 }
 
 * {
