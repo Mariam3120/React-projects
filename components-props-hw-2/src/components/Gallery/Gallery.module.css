@@ -1,0 +1,30 @@
+.gallery {
+  background-image: url("../../assets/images/wave-shape.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% 95%;
+  padding: 30px 40px 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 90px;
+}
+
+.row img {
+  height: 313px;
+  margin-bottom: 60px;
+}
+
+.row img:nth-child(1) {
+  height: 400px;
+  margin-bottom: 90px;
+}
+.row img:nth-child(2) {
+  height: 300px;
+}
+.row img:nth-child(3) {
+  height: 340px;
+}
