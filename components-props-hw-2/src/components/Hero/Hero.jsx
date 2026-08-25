@@ -20,7 +20,7 @@ function Hero() {
 
       <div className={styles.right}>
         <img src={promoCard} alt="Authentic Tamil Nadu Snacks & Sweets" />
-        <Button label="Place Order" />
+        <Button>Place Order</Button>
       </div>
     </section>
   );

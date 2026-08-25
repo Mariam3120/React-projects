@@ -1,8 +1,8 @@
 import styles from "./Button.module.css";
 
-function Button({label}){
+function Button({children}){
   return(
-    <button className={styles.button}>{label}</button>
+    <button className={styles.button}>{children}</button>
   );
 }
 
