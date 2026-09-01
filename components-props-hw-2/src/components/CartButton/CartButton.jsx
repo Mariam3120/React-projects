@@ -10,3 +10,6 @@ function CartButton({count}) {
 }
 
 export default CartButton;
+
+//აქ უბრალოდ იხატება ის 0 1 თუ 2 წრეში კარტზე
+

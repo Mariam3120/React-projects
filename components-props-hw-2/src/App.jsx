@@ -55,3 +55,9 @@ export default App;
 //   → Header re-renders
 //   → <CartButton count={3} />
 //   → badge shows 3
+
+
+
+/* <SnackCard onAddToCart={...} />   ← invented name, passed along
+<Button onClick={...} />          ← still invented! Button is YOUR component
+<button onClick={onClick}>        ← ⚡ THIS one is React's real event */
