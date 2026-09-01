@@ -1,7 +1,7 @@
 import styles from "./SnackCard.module.css";
 import Button from "../Button/Button.jsx";
 
-function SnackCard({image, name, price}) {
+function SnackCard({image, name, price, onAddToCart}) {
   return (
     <article className={styles.card}>
       <img className={styles.image} src={image} alt={name}/>
@@ -12,7 +12,7 @@ function SnackCard({image, name, price}) {
       </div>
 
       <div className={styles.actions}>
-        <Button>Buy Now</Button>
+        <Button onClick={onAddToCart}>Buy Now</Button>
         <span className={styles.star}>★</span>
       </div>
     </article> 

@@ -2,10 +2,11 @@ import styles from "./Header.module.css";
 import NavLink from "../Nav/NavLink.jsx";
 import logo from "../../assets/images/logo.png";
 import logoText from "../../assets/images/logo-txt.png";
+import CartButton from "../CartButton/CartButton.jsx";
 //image-ზე src={logo} ამას პოულობს დაიმპორტებული logo-დან
 //ასევე logoText-იც იგივეა, ეს არის ლოგოს ტექსტი, რომელიც დაიმპორტებულია logo-txt.png-დან
 
-function Header() {
+function Header({cartCount}) {
   return (
     <header className={styles.header}>
       <div className={styles.brand}>
@@ -20,6 +21,7 @@ function Header() {
           <NavLink label="Contact" href="#contact" />
         </ul>
       </nav>
+      <CartButton count ={cartCount} />
     </header>
   );
 }
