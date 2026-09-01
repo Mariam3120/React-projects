@@ -3,6 +3,7 @@ import Header from "./components/Header/Header.jsx";
 import Hero from "./components/Hero/Hero.jsx";
 import Gallery from "./components/Gallery/Gallery.jsx";
 import Menu from "./components/Menu/Menu.jsx";
+import Contact  from "./components/Contact/Contact.jsx";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
       <Hero />
       <Gallery />
       <Menu onAddToCart={addToCart} />
+      <Contact />
     </div>
   )
 }
