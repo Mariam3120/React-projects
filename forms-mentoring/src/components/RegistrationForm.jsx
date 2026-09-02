@@ -5,12 +5,12 @@ const RegistrationForm = ({onAddUser}) => {
 
     const handleChange = (event) => {
         const {name, value, type, checked} = event.target; 
-        //checked ვიყენებთ მხოლოდ ჩექბოქსისთვის
-        console.log(event);
+        //checked ვიყენებთ მხოლოდ ჩექბოქსისთვის რადგან ჩექბოქსს აქვს checked ატრიბუტი, რომელიც გვიჩვენებს არის თუ არა ის მონიშნული. სხვა ტიპის ინპუტებისთვის (მაგალითად ტექსტური ველი ან რადიო ბტონი) ჩვენ ვიყენებთ value ატრიბუტს.
+        // console.log(event);
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === "checkbox" ? checked : value
-            
+            //ეს [name] სინტაქსი საშუალებას გვაძლევს დინამიურად განვსაზღვროთ რომელი ველი უნდა განახლდეს formData ობიექტში. მაგალითად, თუ name არის "role", მაშინ ეს განახლებს formData.role-ს.
         }));
 
     };
@@ -28,8 +28,8 @@ const RegistrationForm = ({onAddUser}) => {
             role: formData.role,
             isSpeaker: formData.isSpeaker
         }
-        onAddUser(newUser);
-        setFormData({ name: '', role: 'Frontend', isSpeaker: false });
+        onAddUser(newUser); //ვიძახებთ onAddUser ფუნქციას, რომელიც მიღებულია props-ით, რათა დავამატოთ ახალი მომხმარებელი participants სიაში.
+        setFormData({ name: '', role: 'Frontend', isSpeaker: false }); //ვასულებთ ფორმის ველებს საწყის მდგომარეობაში, რათა მომხმარებელმა შეძლოს ახალი მონაცემების შეყვანა.
     }
 
     return (

@@ -1,3 +1,4 @@
+// BadgeCard იღებს user ობიექტს, რომელიც შეიცავს მომხმარებლის მონაცემებს, და აჩვენებს მათ ბადჯის ფორმატში. თუ მომხმარებელი სპიკერია, ბადჯი მიიღებს დამატებით სტილს და გამოჩნდება "სპიკერი" პილა. 
 const BadgeCard = ({user}) => {
   return (
     <div className={user.isSpeaker ? 'badge-card  speaker' : 'badge-card'}>
