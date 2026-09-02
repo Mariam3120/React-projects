@@ -22,6 +22,7 @@ const RegistrationForm = ({onAddUser}) => {
             return;
         }
         //აქ ვქმნით ახალ ობიექტს, რომელიც შეიცავს მომხმარებლის მონაცემებს, და ვიძახებთ onAddUser ფუნქციას, რათა დავამატოთ ეს მონაცემები participants სიაში.
+        //ზუსტად იმ სტრუქტურის მქონე ობიექტია რაც მანამდე გვაქვს ფორმდატას სთეითში!
         const newUser = {
             id: Date.now(),
             name: formData.name,
