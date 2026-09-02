@@ -7,8 +7,11 @@ function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); //ერორებისთვისაც სთეითს ვქმნით, რათა შევინახოთ ვალიდაციის დროს მიღებული ერორები.
 
+  //საბმითის ფუნქციაში ვაკონსოლებთ ვალიდაციის შემდეგ მიღებულ ერორებს, თუ ერორები არ არის, ვაკონსოლებთ name, email, message-ს.
+  //იმიტორო არ ვაგზავნით ჯერ არვაგზავნით სერვერზე, მხოლოდ ვნახულობთ კონსოლში
+  //newErrors ცვლადში ვიძახებთ validate ფუნქციას, რომელიც აბრუნებს ერორების ობიექტს. შემდეგ ვაყენებთ ერორებს სთეითში setErrors(newErrors) მეთოდით.
   function handleSubmit(e) {
     e.preventDefault();
 
