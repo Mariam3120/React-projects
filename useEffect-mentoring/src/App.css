@@ -1,0 +1,69 @@
+/* 📦 კრიპტო ქარდი გამოკვეთილი ჩარჩოთი */
+.crypto-card {
+  background: #1e293b;
+  padding: 28px;
+  border-radius: 16px;
+  border: 2px solid #334155; /* 🔳 ჩარჩო */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* 🏷️ სათაური */
+.crypto-card h2 {
+  font-size: 1.4rem;
+  color: #38bdf8;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+/* 🪙 ფასის ბლოკი */
+.price-display {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4ade80; /* 🟢 მწვანე ინდიკატორი */
+  background-color: #064e3b;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #047857;
+  margin: 20px 0;
+}
+
+/* 🔄 ჩატვირთვის სტატუსი */
+.loading-status {
+  color: #facc15;
+  font-size: 1.1rem;
+  padding: 20px;
+  border: 1px dashed #facc15;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* 🔘 ღილაკის სტილები */
+.toggle-btn {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+.toggle-btn.inactive {
+  background-color: #475569;
+  color: #cbd5e1;
+}
+
+.toggle-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
