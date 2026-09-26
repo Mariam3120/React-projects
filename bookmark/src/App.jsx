@@ -39,3 +39,45 @@ function App() {
 }
 
 export default App;
+
+
+//THE WHOLE FLOW (როგორ გადაცემს აპი ლისტს bookmarks-ებს)
+/*
+// 1. useBookmarks.js — the fetch
+const data = await response.json();
+setBookmarks(data);                          // → into state
+
+// 2. useBookmarks.js — the hook hands it out
+return { bookmarks, isLoading, error };
+
+// 3. App.jsx — App takes it
+const { bookmarks, isLoading, error } = useBookmarks();
+
+// 4. App.jsx — App passes it down
+<BookmarkList bookmarks={bookmarks} />
+
+// 5. BookmarkList.jsx — List receives it
+export default function BookmarkList({ bookmarks })
+
+bookmarks.json
+      ↓ fetch
+useBookmarks   → returns { bookmarks, isLoading, error }
+      ↓ App calls the hook
+App            → const { bookmarks } = useBookmarks()
+      ↓ prop
+BookmarkList   → ({ bookmarks })
+      ↓ map → one object each
+BookmarkCard   → ({ bookmark })
+
+
+The thing to notice
+The word bookmarks appears at every step — but it's a different variable each time, just named consistently on purpose:
+
+Where	What it is
+useBookmarks	the state
+App	a local variable from destructuring the hook's return
+App's JSX	a prop being set
+List	a prop being received
+Same name, four separate things, connected by hand-offs. That's why it feels like one thing flowing — and naming it the same everywhere is deliberate, so you can follow the path
+
+*/
