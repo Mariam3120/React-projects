@@ -17,6 +17,8 @@ export default function BookmarkCard({ bookmark}) {
             tags.map((tag) => (
               <span key={tag}>{tag}</span>
             ))
+            //აი აქ key={tag} იმიტომაა რო სტრინგი სულ უნიკალურია აქ არ გვჭირდება აიდი
+            //როგორც bookmarkList-ში, სადაც bookmark.id არის უნიკალური, აქ კი tag არის სტრინგი და ის უნიკალურია, ამიტომ შეგვიძლია გამოვიყენოთ key={tag}
           }
         </div>
       </div>
@@ -99,3 +101,35 @@ React didn't complain about the name — it just built props = { data: {...} }, 
 //                              Card
 
 */
+
+// PROP STYLE — object vs separate props:!!!!!!!!!!!!!!!!!!!
+// Object prop ({ bookmark }) when the component is ABOUT one entity.
+//   It reads bookmark.title, .tags, .isPinned — only a bookmark has those.
+//   Keeps the signature short as callbacks get added (onEdit, onDelete...).
+//
+// Separate props ({ label }) when the component is a GENERIC widget.
+//   A <Tag> just shows text — it must not know bookmarks exist, or it
+//   can't be reused for anything else.
+//
+// Ask: "could this render something completely different????????"
+//   yes → separate props   |   no → the object
+
+/*
+FruitItem only needs a string → so any string works → reusable anywhere
+BookmarkCard needs a whole bookmark's shape (title, url, description, tags, isPinned…) → so only a bookmark works
+Yes, bookmark can't be something else — because the component reads bookmark.title, bookmark.tags etc. Those only exist on a bookmark.
+*/
+
+// PROP STYLE — object თუ ცალკეული props:
+//
+// Object prop ({ bookmark }) — როცა კომპონენტი ერთ კონკრეტულ entity-ს აღწერს.
+//   ის კითხულობს bookmark.title, .tags, .isPinned — ეს properties მხოლოდ
+//   bookmark-ს აქვს. ასევე signature მოკლე რჩება, როცა callback-ები
+//   დაემატება (onEdit, onDelete, onArchive...).
+//
+// ცალკეული props ({ label }) — როცა კომპონენტი generic widget-ია.
+//   <Tag> უბრალოდ ტექსტს აჩვენებს — მან არ უნდა იცოდეს, რომ bookmark
+//   არსებობს, თორემ სხვა რამისთვის ვერ გამოვიყენებთ.
+//
+// მთავარი კითხვა: "შეუძლია ამ კომპონენტს სრულიად სხვა რამე აჩვენოს?"
+//   კი → ცალკეული props   |   არა → object prop
