@@ -20,7 +20,8 @@ import { useBookmarks } from "./hooks/useBookmarks";
 
 function App() {
   const { bookmarks, isLoading, error } = useBookmarks();
-  //custom hook-ები ასე 
+  //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს 
+  // აკეთებს state-ს და side effect-ს bookmark-ების ჩატვირთვისთვის და შენახვისთვის localStorage-ში.
 
   if (isLoading) {
     return <p>...Loading</p>;
