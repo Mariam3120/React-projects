@@ -1,9 +1,10 @@
 export default function BookmarkCard({ bookmark}) {
+  //object destructuring: bookmark არის ობიექტი, რომელიც მოდის ფროფსად BookmarkList-დან, სადაც ის არის ლუპის ცვლადი. აქ ჩვენ ვიღებთ bookmark ობიექტს და ვუწოდებთ მას bookmark.
   const{title, url, description, tags } = bookmark;
   return (
     <article className="card">
       <div className="card-header">
-        <a href={url} target="_blank">
+        <a href={url} target="_blank" rel="noopener noreferrer">
           <h2>{title}</h2>
           <p>{url}</p>
         </a>
@@ -48,7 +49,7 @@ App                        owns the array in state       bookmarks = [ {...}, {.
       */
 
 
-//აქ bookmark ფროფსი მოდის ლისტის დამეპილიდან, რომელიც ერთ ელემენტს აბრუნებს მთელი სიიდან
+//აქ bookmark ფროფსი მოდის ლისტის დამეპილიდან, რომელიც ელემენტების მასივს აბრუნებს მთელი სიიდან
 //ლისტში მას შეილება დავარქვათ item როგორც ცვლადს მთავარია ფროფსი იყოს იგივე
 
 /*
@@ -89,5 +90,12 @@ function BookmarkCard({ bookmark }) {
 You'd get: Cannot destructure property 'title' of 'bookmark' as it is undefined.
 
 React didn't complain about the name — it just built props = { data: {...} }, and Card asked for a bookmark key that isn't there. Got undefined. Then tried to read .title off nothing.
+
+<BookmarkCard key={bookmark.id} bookmark={bookmark}/>
+//                      ↑          ↑        ↑
+//              loop variable    PROP     loop variable
+//                              NAME
+//                            must match
+//                              Card
 
 */

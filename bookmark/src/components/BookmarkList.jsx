@@ -10,6 +10,8 @@ export default function BookmarkList({bookmarks}) {
       {
         bookmarks.map((bookmark)=>(
           <BookmarkCard key={bookmark.id} bookmark={bookmark}/>
+          // bookmark მოდის მეპიდან, ის ლუპის ცვლადია რომელიც მოდის ახალი ყოველჯერზე,
+          //card არის მიმღები კომპონენტი რომელიც იღებს bookmark ფროფსად და ხატავს მას.
         ))
       }
 

@@ -15,6 +15,7 @@ export function useBookmarks() {
 
   useEffect(() => {
     async function loadBookmarks() {
+      //async აბრუნებს ფრომისს, ამიტო useEffect-ში არ უნდა იყოს async ფუნქცია პირდაპირ, რადგან useEffect არ ელოდება ფრომისს. ამიტომ ვქმნით შიდა async ფუნქციას.
       try {
         // bookmarks-ის key; fallback — null, რაც ნიშნავს „არასდროს შენახულა"
         // ([] არა! [] ნიშნავს „მომხმარებელმა ყველაფერი წაშალა")
@@ -38,7 +39,7 @@ export function useBookmarks() {
         // return data არა! setTimeout-ს შედეგი არ აინტერესებს
         setBookmarks(data);
       } catch (err) {
-        // err და არა error — რომ error state არ „დაიფაროს"
+        // err და არა error — რომ error state არ „დაიფაროს" (ის მხოლოდ catch ბლოკშია)
         // state-ში ტექსტი: err-ის რომელი property შეიცავს შეტყობინებას?
         setError(err.message);
       } finally {
