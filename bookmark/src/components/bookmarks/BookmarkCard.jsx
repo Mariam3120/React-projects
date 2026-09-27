@@ -1,18 +1,72 @@
-export default function BookmarkCard({ bookmark}) {
+import { TagList } from "../ui/TagList";
+import { getDomain, getAvatarLetter } from "../../utils/url.js";
+import { getFormattedDate } from "../../utils/date.js";
+
+export function BookmarkCard({ bookmark, onEdit, onDelete, onArchive, onPin }) {
   //object destructuring: bookmark არის ობიექტი, რომელიც მოდის ფროფსად BookmarkList-დან, სადაც ის არის ლუპის ცვლადი. აქ ჩვენ ვიღებთ bookmark ობიექტს და ვუწოდებთ მას bookmark.
-  const{title, url, description, tags } = bookmark;
+  const { title, url, description, tags, isPinned, visitCount, createdAt, id } =
+    bookmark;
   return (
     <article className="card">
+      <span className="avatar" aria-hidden="true">
+        {getAvatarLetter(url)}
+      </span>
       <div className="card-header">
         <a href={url} target="_blank" rel="noopener noreferrer">
           <h2>{title}</h2>
-          <p>{url}</p>
+          <p>{getDomain(url)}</p>
         </a>
-        <button type="button">⋮</button>
+        <div className="actions">
+          <button
+            type="button"
+            onClick={() => onPin(id)}
+            // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
+            // screen reader-ისთვის სახელი მაინც საჭიროა
+            aria-label={isPinned ? "Unpin bookmark" : "Pin bookmark"}
+            // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
+            aria-pressed={isPinned}
+          >
+            📌
+          </button>
+          <button
+            type="button"
+            onClick={() => onEdit(id)}
+            // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
+            // screen reader-ისთვის სახელი მაინც საჭიროა
+            aria-label="Edit bookmark"
+            // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
+          >
+            ✏️
+          </button>
+          <button
+            type="button"
+            onClick={() => onDelete(id)}
+            // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
+            // screen reader-ისთვის სახელი მაინც საჭიროა
+            aria-label="Delete bookmark"
+            // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
+          >
+            🗑️
+          </button>
+          <button
+            type="button"
+            onClick={() => onArchive(id)}
+            // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
+            // screen reader-ისთვის სახელი მაინც საჭიროა
+            aria-label="Archive bookmark"
+            // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
+          >
+            🗄️
+          </button>
+        </div>
       </div>
       <div>
-        <p>{description}</p>
-        <div>
+        {/* description შეიძლება ცარიელი იყოს — მაშინ <p> საერთოდ არ გვინდა */}
+        {description && <p className="card-description">{description}</p>}
+
+        {/* ეს დავარენდერე პირდაპირ ტაგლისტი და ფროფსად გადავეცი მასივი */}
+        <TagList tags={tags} />
+        {/* <div>  ეს სანამ კომპონენტად გავიტანდი ტაგებს
           {
             tags.map((tag) => (
               <span key={tag}>{tag}</span>
@@ -20,11 +74,15 @@ export default function BookmarkCard({ bookmark}) {
             //აი აქ key={tag} იმიტომაა რო სტრინგი სულ უნიკალურია აქ არ გვჭირდება აიდი
             //როგორც bookmarkList-ში, სადაც bookmark.id არის უნიკალური, აქ კი tag არის სტრინგი და ის უნიკალურია, ამიტომ შეგვიძლია გამოვიყენოთ key={tag}
           }
-        </div>
+        </div> */}
       </div>
-
+      <footer>
+        <span>Visits: {visitCount}</span>
+        <span>Created: {getFormattedDate(createdAt)}</span>
+        {isPinned && <span>Pinned</span>}
+      </footer>
     </article>
-  )
+  );
 }
 
 //map-ში{ after => means "here comes a block of code to run", not "here's a value to return". The block runs, nothing is returned, so the function returns undefined:
@@ -33,14 +91,12 @@ export default function BookmarkCard({ bookmark}) {
 //(tag) => { return <span>{tag}</span> }  // braces = code block, so say "return"
 //Memory hook: ( returns, { runs.
 
-
 //KEY
-//React's job on every re-render is to compare the new UI to the old UI 
+//React's job on every re-render is to compare the new UI to the old UI
 // and change only what differs. For a list, it has to answer: "is this the same item as before, or a different one?"
 
-
 //ეს არის ეერთი ქარდი რომელიც დარენდერდება, თავისი სტრუქტურით
-//ისაა ლისტის შვილი 
+//ისაა ლისტის შვილი
 /*
 App                        owns the array in state       bookmarks = [ {...}, {...}, {...} ]
  │                                                                ↓ passes whole array
@@ -49,7 +105,6 @@ App                        owns the array in state       bookmarks = [ {...}, {.
       └── BookmarkCard     receives one bookmark, displays it
 
       */
-
 
 //აქ bookmark ფროფსი მოდის ლისტის დამეპილიდან, რომელიც ელემენტების მასივს აბრუნებს მთელი სიიდან
 //ლისტში მას შეილება დავარქვათ item როგორც ცვლადს მთავარია ფროფსი იყოს იგივე

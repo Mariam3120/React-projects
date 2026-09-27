@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import BookmarkList from "./components/BookmarkList";
+import { BookmarkList } from "./components/bookmarks/BookmarkList.jsx";
 import { useBookmarks } from "./hooks/useBookmarks";
 
 // //tests
@@ -17,10 +17,15 @@ import { useBookmarks } from "./hooks/useBookmarks";
 // // 3. corrupted — see below
 // const t3 = getFromStorage("bookmark-manager:broken", "FALLBACK USED");
 // console.log("T3:", t3);
+//TEST2
+// console.log(getDomain("https://www.react.dev/learn"))
+// console.log(getDomain("not a url"))
+// console.log(getFormattedDate("2025-11-03T09:12:00.000Z")	)
+// console.log(getFormattedDate("გამარჯობა"))
 
 function App() {
   const { bookmarks, isLoading, error } = useBookmarks();
-  //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს 
+  //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს
   // აკეთებს state-ს და side effect-ს bookmark-ების ჩატვირთვისთვის და შენახვისთვის localStorage-ში.
 
   if (isLoading) {
@@ -39,7 +44,6 @@ function App() {
 }
 
 export default App;
-
 
 //THE WHOLE FLOW (როგორ გადაცემს აპი ლისტს bookmarks-ებს)
 /*

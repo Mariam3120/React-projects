@@ -1,218 +1,290 @@
 [
-  {
-    "id": 1,
-    "title": "React Documentation",
-    "url": "https://react.dev",
-    "description": "Official React documentation with guides, API references, and examples for building user interfaces.",
-    "tags": ["React", "Frontend", "Documentation"],
-    "isPinned": true,
-    "isArchived": false
-  },
-  {
-    "id": 2,
-    "title": "MDN Web Docs",
-    "url": "https://developer.mozilla.org",
-    "description": "Documentation and learning resources for HTML, CSS, JavaScript, and browser APIs.",
-    "tags": ["JavaScript", "HTML", "CSS", "Documentation"],
-    "isPinned": true,
-    "isArchived": false
-  },
-  {
-    "id": 3,
-    "title": "Frontend Mentor",
-    "url": "https://www.frontendmentor.io",
-    "description": "Frontend coding challenges based on professional designs for practicing real-world development.",
-    "tags": ["Frontend", "Practice", "Projects"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 4,
-    "title": "JavaScript.info",
-    "url": "https://javascript.info",
-    "description": "A modern JavaScript tutorial covering the language from basic concepts to advanced topics.",
-    "tags": ["JavaScript", "Learning", "Documentation"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 5,
-    "title": "CSS-Tricks",
-    "url": "https://css-tricks.com",
-    "description": "Articles, guides, and practical examples about CSS, layouts, and frontend development.",
-    "tags": ["CSS", "Frontend", "Articles"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 6,
-    "title": "Vite",
-    "url": "https://vite.dev",
-    "description": "A fast frontend build tool used for creating and developing modern JavaScript applications.",
-    "tags": ["Tools", "React", "Frontend"],
-    "isPinned": true,
-    "isArchived": false
-  },
-  {
-    "id": 7,
-    "title": "GitHub",
-    "url": "https://github.com",
-    "description": "Platform for hosting Git repositories, collaborating on code, and managing software projects.",
-    "tags": ["Git", "Tools", "Development"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 8,
-    "title": "Can I Use",
-    "url": "https://caniuse.com",
-    "description": "Browser compatibility tables for HTML, CSS, JavaScript, and other modern web platform features.",
-    "tags": ["CSS", "JavaScript", "Tools"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 9,
-    "title": "web.dev",
-    "url": "https://web.dev",
-    "description": "Guides and articles from Google about performance, accessibility, responsive design, and web development.",
-    "tags": ["Frontend", "Performance", "Articles"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 10,
-    "title": "JavaScript MDN Guide",
-    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
-    "description": "A structured guide for learning the core concepts and features of the JavaScript language.",
-    "tags": ["JavaScript", "Learning", "Documentation"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 11,
-    "title": "React useState Reference",
-    "url": "https://react.dev/reference/react/useState",
-    "description": "Official reference for React useState and common patterns for managing component state.",
-    "tags": ["React", "Hooks", "Documentation"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 12,
-    "title": "React useEffect Reference",
-    "url": "https://react.dev/reference/react/useEffect",
-    "description": "Official React documentation explaining effects, dependencies, synchronization, and cleanup.",
-    "tags": ["React", "Hooks", "Documentation"],
-    "isPinned": true,
-    "isArchived": false
-  },
-  {
-    "id": 13,
-    "title": "Flexbox Froggy",
-    "url": "https://flexboxfroggy.com",
-    "description": "Interactive game for practicing CSS Flexbox properties and layout concepts.",
-    "tags": ["CSS", "Practice", "Learning"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 14,
-    "title": "Grid Garden",
-    "url": "https://cssgridgarden.com",
-    "description": "Interactive game designed to teach and practice CSS Grid layout.",
-    "tags": ["CSS", "Practice", "Learning"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 15,
-    "title": "Figma",
-    "url": "https://www.figma.com",
-    "description": "Collaborative interface design tool widely used for designing and prototyping web applications.",
-    "tags": ["Design", "Tools", "UI"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 16,
-    "title": "Coolors",
-    "url": "https://coolors.co",
-    "description": "Color palette generator for creating and exploring color combinations for UI designs.",
-    "tags": ["Design", "Tools", "CSS"],
-    "isPinned": false,
-    "isArchived": true
-  },
-  {
-    "id": 17,
-    "title": "Google Fonts",
-    "url": "https://fonts.google.com",
-    "description": "Library of web fonts that can be used in websites and frontend projects.",
-    "tags": ["Design", "CSS", "Resources"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 18,
-    "title": "Unsplash",
-    "url": "https://unsplash.com",
-    "description": "Collection of high-quality images that can be used in design and development projects.",
-    "tags": ["Design", "Resources"],
-    "isPinned": false,
-    "isArchived": true
-  },
-  {
-    "id": 19,
-    "title": "Stack Overflow",
-    "url": "https://stackoverflow.com",
-    "description": "Question and answer community for developers covering programming problems and solutions.",
-    "tags": ["Development", "Community", "Learning"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 20,
-    "title": "npm",
-    "url": "https://www.npmjs.com",
-    "description": "Package registry for JavaScript libraries, tools, and reusable development packages.",
-    "tags": ["JavaScript", "Tools", "Packages"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 21,
-    "title": "Git Documentation",
-    "url": "https://git-scm.com/doc",
-    "description": "Official Git documentation including references, tutorials, and version control concepts.",
-    "tags": ["Git", "Documentation", "Tools"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 22,
-    "title": "W3C Web Accessibility Initiative",
-    "url": "https://www.w3.org/WAI/",
-    "description": "Resources and guidelines for building websites that are accessible to people with disabilities.",
-    "tags": ["Accessibility", "Frontend", "Documentation"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 23,
-    "title": "JSONPlaceholder",
-    "url": "https://jsonplaceholder.typicode.com",
-    "description": "Free fake REST API commonly used for practicing HTTP requests and frontend development.",
-    "tags": ["API", "Practice", "JavaScript"],
-    "isPinned": false,
-    "isArchived": false
-  },
-  {
-    "id": 24,
-    "title": "Postman Learning Center",
-    "url": "https://learning.postman.com",
-    "description": "Documentation and learning resources for working with APIs and HTTP requests.",
-    "tags": ["API", "Tools", "Documentation"],
-    "isPinned": false,
-    "isArchived": true
-  }
+    {
+        "id": "1",
+        "title": "React Documentation",
+        "url": "https://react.dev",
+        "description": "Official React documentation with guides, API references, and examples for building user interfaces.",
+        "tags": ["React", "Frontend", "Documentation"],
+        "isPinned": true,
+        "isArchived": false,
+        "createdAt": "2025-11-03T09:12:00.000Z",
+        "visitCount": 142,
+        "lastVisitedAt": "2026-09-18T18:40:00.000Z"
+    },
+    {
+        "id": "2",
+        "title": "MDN Web Docs",
+        "url": "https://developer.mozilla.org",
+        "description": "Documentation and learning resources for HTML, CSS, JavaScript, and browser APIs.",
+        "tags": ["JavaScript", "HTML", "CSS", "Documentation"],
+        "isPinned": true,
+        "isArchived": false,
+        "createdAt": "2025-11-05T14:30:00.000Z",
+        "visitCount": 152,
+        "lastVisitedAt": "2026-09-14T08:05:00.000Z"
+    },
+    {
+        "id": "3",
+        "title": "Frontend Mentor",
+        "url": "https://www.frontendmentor.io",
+        "description": "Frontend coding challenges based on professional designs for practicing real-world development.",
+        "tags": ["Frontend", "Practice", "Projects"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-01-15T11:45:00.000Z",
+        "visitCount": 47,
+        "lastVisitedAt": "2026-09-13T20:15:00.000Z"
+    },
+    {
+        "id": "4",
+        "title": "JavaScript.info",
+        "url": "https://javascript.info",
+        "description": "A modern JavaScript tutorial covering the language from basic concepts to advanced topics.",
+        "tags": ["JavaScript", "Learning", "Documentation"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-02-02T07:20:00.000Z",
+        "visitCount": 63,
+        "lastVisitedAt": "2026-09-10T16:52:00.000Z"
+    },
+    {
+        "id": "5",
+        "title": "CSS-Tricks",
+        "url": "https://css-tricks.com",
+        "description": "Articles, guides, and practical examples about CSS, layouts, and frontend development.",
+        "tags": ["CSS", "Frontend", "Articles"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-02-20T13:05:00.000Z",
+        "visitCount": 28,
+        "lastVisitedAt": "2026-08-30T10:30:00.000Z"
+    },
+    {
+        "id": "6",
+        "title": "Vite",
+        "url": "https://vite.dev",
+        "description": "A fast frontend build tool used for creating and developing modern JavaScript applications.",
+        "tags": ["Tools", "React", "Frontend"],
+        "isPinned": true,
+        "isArchived": false,
+        "createdAt": "2026-03-01T09:00:00.000Z",
+        "visitCount": 96,
+        "lastVisitedAt": "2026-09-19T12:10:00.000Z"
+    },
+    {
+        "id": "7",
+        "title": "GitHub",
+        "url": "https://github.com",
+        "description": "Platform for hosting Git repositories, collaborating on code, and managing software projects.",
+        "tags": ["Git", "Tools", "Development"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2025-12-12T18:25:00.000Z",
+        "visitCount": 210,
+        "lastVisitedAt": "2026-09-20T07:45:00.000Z"
+    },
+    {
+        "id": "8",
+        "title": "Can I Use",
+        "url": "https://caniuse.com",
+        "description": "Browser compatibility tables for HTML, CSS, JavaScript, and other modern web platform features.",
+        "tags": ["CSS", "JavaScript", "Tools"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-03-14T15:40:00.000Z",
+        "visitCount": 19,
+        "lastVisitedAt": "2026-07-22T09:55:00.000Z"
+    },
+    {
+        "id": "9",
+        "title": "web.dev",
+        "url": "https://web.dev",
+        "description": "Guides and articles from Google about performance, accessibility, responsive design, and web development.",
+        "tags": ["Frontend", "Performance", "Articles"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-04-02T10:15:00.000Z",
+        "visitCount": 15,
+        "lastVisitedAt": "2026-08-16T14:20:00.000Z"
+    },
+    {
+        "id": "10",
+        "title": "JavaScript MDN Guide",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+        "description": "A structured guide for learning the core concepts and features of the JavaScript language.",
+        "tags": ["JavaScript", "Learning", "Documentation"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-04-10T08:30:00.000Z",
+        "visitCount": 31,
+        "lastVisitedAt": "2026-08-28T19:05:00.000Z"
+    },
+    {
+        "id": "11",
+        "title": "React useState Reference",
+        "url": "https://react.dev/reference/react/useState",
+        "description": "Official reference for React useState and common patterns for managing component state.",
+        "tags": ["React", "Hooks", "Documentation"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-04-25T12:00:00.000Z",
+        "visitCount": 58,
+        "lastVisitedAt": "2026-09-12T11:35:00.000Z"
+    },
+    {
+        "id": "12",
+        "title": "React useEffect Reference",
+        "url": "https://react.dev/reference/react/useEffect",
+        "description": "Official React documentation explaining effects, dependencies, synchronization, and cleanup.",
+        "tags": ["React", "Hooks", "Documentation"],
+        "isPinned": true,
+        "isArchived": false,
+        "createdAt": "2026-04-25T12:04:00.000Z",
+        "visitCount": 74,
+        "lastVisitedAt": "2026-09-19T21:18:00.000Z"
+    },
+    {
+        "id": "13",
+        "title": "Flexbox Froggy",
+        "url": "https://flexboxfroggy.com",
+        "description": "Interactive game for practicing CSS Flexbox properties and layout concepts.",
+        "tags": ["CSS", "Practice", "Learning"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-05-06T17:50:00.000Z",
+        "visitCount": 12,
+        "lastVisitedAt": "2026-06-09T13:25:00.000Z"
+    },
+    {
+        "id": "14",
+        "title": "Grid Garden",
+        "url": "https://cssgridgarden.com",
+        "description": "Interactive game designed to teach and practice CSS Grid layout.",
+        "tags": ["CSS", "Practice", "Learning"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-05-06T18:02:00.000Z",
+        "visitCount": 9,
+        "lastVisitedAt": "2026-06-09T13:48:00.000Z"
+    },
+    {
+        "id": "15",
+        "title": "Figma",
+        "url": "https://www.figma.com",
+        "description": "Collaborative interface design tool widely used for designing and prototyping web applications.",
+        "tags": ["Design", "Tools", "UI"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-05-18T09:35:00.000Z",
+        "visitCount": 88,
+        "lastVisitedAt": "2026-09-17T15:00:00.000Z"
+    },
+    {
+        "id": "16",
+        "title": "Coolors",
+        "url": "https://coolors.co",
+        "description": "Color palette generator for creating and exploring color combinations for UI designs.",
+        "tags": ["Design", "Tools", "CSS"],
+        "isPinned": false,
+        "isArchived": true,
+        "createdAt": "2026-05-30T16:10:00.000Z",
+        "visitCount": 7,
+        "lastVisitedAt": "2026-07-01T10:05:00.000Z"
+    },
+    {
+        "id": "17",
+        "title": "Google Fonts",
+        "url": "https://fonts.google.com",
+        "description": "Library of web fonts that can be used in websites and frontend projects.",
+        "tags": ["Design", "CSS", "Resources"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-06-04T11:20:00.000Z",
+        "visitCount": 41,
+        "lastVisitedAt": "2026-09-05T08:40:00.000Z"
+    },
+    {
+        "id": "18",
+        "title": "Unsplash",
+        "url": "https://unsplash.com",
+        "description": "Collection of high-quality images that can be used in design and development projects.",
+        "tags": ["Design", "Resources"],
+        "isPinned": false,
+        "isArchived": true,
+        "createdAt": "2026-06-15T14:55:00.000Z",
+        "visitCount": 5,
+        "lastVisitedAt": null
+    },
+    {
+        "id": "19",
+        "title": "Stack Overflow",
+        "url": "https://stackoverflow.com",
+        "description": "Question and answer community for developers covering programming problems and solutions.",
+        "tags": ["Development", "Community", "Learning"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-06-27T19:30:00.000Z",
+        "visitCount": 120,
+        "lastVisitedAt": "2026-09-16T22:12:00.000Z"
+    },
+    {
+        "id": "20",
+        "title": "npm",
+        "url": "https://www.npmjs.com",
+        "description": "Package registry for JavaScript libraries, tools, and reusable development packages.",
+        "tags": ["JavaScript", "Tools", "Packages"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-07-03T07:05:00.000Z",
+        "visitCount": 66,
+        "lastVisitedAt": "2026-09-15T09:28:00.000Z"
+    },
+    {
+        "id": "21",
+        "title": "Git Documentation",
+        "url": "https://git-scm.com/doc",
+        "description": "Official Git documentation including references, tutorials, and version control concepts.",
+        "tags": ["Git", "Documentation", "Tools"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-07-19T13:15:00.000Z",
+        "visitCount": 23,
+        "lastVisitedAt": "2026-08-11T17:33:00.000Z"
+    },
+    {
+        "id": "22",
+        "title": "W3C Web Accessibility Initiative",
+        "url": "https://www.w3.org/WAI/",
+        "description": "Resources and guidelines for building websites that are accessible to people with disabilities.",
+        "tags": ["Accessibility", "Frontend", "Documentation"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-08-01T10:00:00.000Z",
+        "visitCount": 0,
+        "lastVisitedAt": null
+    },
+    {
+        "id": "23",
+        "title": "JSONPlaceholder",
+        "url": "https://jsonplaceholder.typicode.com",
+        "description": "Free fake REST API commonly used for practicing HTTP requests and frontend development.",
+        "tags": ["API", "Practice", "JavaScript"],
+        "isPinned": false,
+        "isArchived": false,
+        "createdAt": "2026-08-14T15:45:00.000Z",
+        "visitCount": 34,
+        "lastVisitedAt": "2026-09-08T12:02:00.000Z"
+    },
+    {
+        "id": "24",
+        "title": "Postman Learning Center",
+        "url": "https://learning.postman.com",
+        "description": "Documentation and learning resources for working with APIs and HTTP requests.",
+        "tags": ["API", "Tools", "Documentation"],
+        "isPinned": false,
+        "isArchived": true,
+        "createdAt": "2026-09-01T08:50:00.000Z",
+        "visitCount": 11,
+        "lastVisitedAt": "2026-09-02T09:10:00.000Z"
+    }
 ]
