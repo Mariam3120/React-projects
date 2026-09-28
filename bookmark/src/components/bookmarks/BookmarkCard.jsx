@@ -2,7 +2,7 @@ import { TagList } from "../ui/TagList";
 import { getDomain, getAvatarLetter } from "../../utils/url.js";
 import { getFormattedDate } from "../../utils/date.js";
 
-export function BookmarkCard({ bookmark, onEdit, onDelete, onArchive, onPin }) {
+export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onTogglePinned, onVisit }) {
   //object destructuring: bookmark არის ობიექტი, რომელიც მოდის ფროფსად BookmarkList-დან, სადაც ის არის ლუპის ცვლადი. აქ ჩვენ ვიღებთ bookmark ობიექტს და ვუწოდებთ მას bookmark.
   const { title, url, description, tags, isPinned, visitCount, createdAt, id } =
     bookmark;
@@ -12,14 +12,14 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onArchive, onPin }) {
         {getAvatarLetter(url)}
       </span>
       <div className="card-header">
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a href={url} target="_blank" rel="noopener noreferrer" onClick={() => onVisit(id)}>
           <h2>{title}</h2>
           <p>{getDomain(url)}</p>
         </a>
         <div className="actions">
           <button
             type="button"
-            onClick={() => onPin(id)}
+            onClick={() => onTogglePinned(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
             aria-label={isPinned ? "Unpin bookmark" : "Pin bookmark"}
@@ -50,7 +50,7 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onArchive, onPin }) {
           </button>
           <button
             type="button"
-            onClick={() => onArchive(id)}
+            onClick={() => onToggleArchived(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
             aria-label="Archive bookmark"

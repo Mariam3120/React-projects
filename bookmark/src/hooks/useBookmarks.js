@@ -67,7 +67,60 @@ export function useBookmarks() {
     saveToStorage(STORAGE_KEYS.BOOKMARKS, bookmarks);
   }, [isLoading, error, bookmarks]);
 
-  return { bookmarks, isLoading, error };
+  function deleteBookmark(id) {
+    // აქ ფილტერში () ასეთი ფრჩხილები აბრუნებს {} ასეთს რეთურნი ჭირდება
+    setBookmarks((current) => (
+        current.filter((bookmark) => bookmark.id !== id )
+    ))
+  }
+
+  function togglePinned(id) {
+    setBookmarks((current) => 
+      current.map((bookmark) => 
+        bookmark.id === id ? {
+          ...bookmark,
+          isPinned: !bookmark.isPinned 
+          // "set isPinned to the opposite of what this bookmark's isPinned currently is."
+          //it means: if it is true make it false if it is false make it true
+        }
+        :
+        bookmark,
+
+      )
+    )
+  }
+  function toggleArchived(id) {
+    setBookmarks((current) =>
+        current.map((bookmark) =>
+            bookmark.id === id
+                ? {
+                      ...bookmark,
+                      isArchived: !bookmark.isArchived,
+                      // არქივში გადატანისას მიმაგრება უნდა მოიხსნას:
+                      // არქივი სიის თავში არ უნდა ჩანდეს
+                      isPinned: false,
+                  }
+                : bookmark,
+        ),
+    );
+}
+
+// ეს ფუნქცია მაშინ გამოიძახება, როცა მომხმარებელი ბმულს გახსნის
+function registerVisit(id) {
+    setBookmarks((current) =>
+        current.map((bookmark) =>
+            bookmark.id === id
+                ? {
+                      ...bookmark,
+                      visitCount: bookmark.visitCount + 1,
+                      lastVisitedAt: new Date().toISOString(),
+                  }
+                : bookmark,
+        ),
+    );
+}
+
+  return { bookmarks, isLoading, error, deleteBookmark, togglePinned, toggleArchived, registerVisit };
   // ობიექტი და არა მასივი — გამომძახებელი სახელებით აიღებს, რაც სჭირდება
 }
 
@@ -92,4 +145,12 @@ Two requirements, that's it:
 Name starts with use — useBookmarks, useTheme, useLocalStorage
 It calls other hooks inside — your useState and useEffect
 Otherwise it's an ordinary JavaScript function. No special syntax, no import, nothing React-specific about the file itself.
+*/
+
+
+/*
+before	!bookmark.isPinned	after
+isPinned: false	!false	isPinned: true → 📌 badge appears
+isPinned: true	!true	isPinned: false → badge disappears
+That's the whole meaning of "toggle" — read the current value, store the opposite.
 */

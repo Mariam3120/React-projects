@@ -1,6 +1,6 @@
 import { BookmarkCard } from "./BookmarkCard";
 
-export function BookmarkList({bookmarks, onEdit, onDelete, onArchive, onPin }) {
+export function BookmarkList({bookmarks, onEdit, onDelete, onToggleArchived, onTogglePinned, onVisit }) {
   /* დავსვათ კითხვა არის თუ არა ეს მასივი ცარიელი? */
   if (bookmarks.length === 0) {
     return <p>No Bookmarks found.</p>
@@ -9,7 +9,7 @@ export function BookmarkList({bookmarks, onEdit, onDelete, onArchive, onPin }) {
     <div>
       {
         bookmarks.map((bookmark)=>(
-          <BookmarkCard key={bookmark.id} bookmark={bookmark} onEdit={onEdit} onDelete={onDelete} onArchive={onArchive} onPin={onPin}/>
+          <BookmarkCard key={bookmark.id} bookmark={bookmark} onEdit={onEdit} onDelete={onDelete} onToggleArchived={onToggleArchived} onTogglePinned={onTogglePinned} onVisit={onVisit}/>
           // bookmark მოდის მეპიდან, ის ლუპის ცვლადია რომელიც მოდის ახალი ყოველჯერზე,
           //card არის მიმღები კომპონენტი რომელიც იღებს bookmark ფროფსად და ხატავს მას.
         ))
