@@ -24,7 +24,16 @@ import { useBookmarks } from "./hooks/useBookmarks";
 // console.log(getFormattedDate("გამარჯობა"))
 
 function App() {
-  const { bookmarks, isLoading, error, deleteBookmark, togglePinned, toggleArchived, registerVisit } = useBookmarks();
+  const {
+    bookmarks,
+    isLoading,
+    error,
+    deleteBookmark,
+    togglePinned,
+    toggleArchived,
+    registerVisit,
+    addBookmark,
+  } = useBookmarks();
   //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს
   // აკეთებს state-ს და side effect-ს bookmark-ების ჩატვირთვისთვის და შენახვისთვის localStorage-ში.
 
@@ -38,7 +47,25 @@ function App() {
 
   return (
     <div>
-      <BookmarkList bookmarks={bookmarks} onDelete={deleteBookmark} onTogglePinned={togglePinned} onToggleArchived={toggleArchived} onVisit={registerVisit}/>
+      <BookmarkList
+        bookmarks={bookmarks}
+        onDelete={deleteBookmark}
+        onTogglePinned={togglePinned}
+        onToggleArchived={toggleArchived}
+        onVisit={registerVisit}
+      />
+      <button
+        onClick={() =>
+          addBookmark({
+            title: "Test bookmark",
+            url: "https://example.com",
+            description: "Temporary",
+            tags: ["Test"],
+          })
+        }
+      >
+        Add test
+      </button>
     </div>
   );
 }

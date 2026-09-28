@@ -8,6 +8,36 @@ const SEED_URL = "/data/bookmarks.json";
 const LOADING_DELAY = 1000;
 //გარეთ გლობალურად, რადგან ისინი არასდროს იცვლებიან და ყოველ რენდერზე არაა საჭირო შეიქმნან
 
+
+function createBookmark({ title, url, description, tags }) {
+    return {
+        // უნიკალური id ბრაუზერის API-დან.
+        // შეამოწმე, რა ტიპისაა seed-ის id შენს bookmarks.json-ში
+        // და დარწმუნდი, რომ ახალიც იგივე ტიპისაა — თორემ === ვეღარ იმუშავებს
+        id: crypto.randomUUID(),
+
+        title,
+        url,
+        description,
+        tags,
+
+        // ახალი ჩანაწერი არც მიმაგრებულია და არც დაარქივებული
+        isPinned: false,
+        isArchived: false,
+
+        // ახლანდელი დრო ISO ფორმატში — იგივე ფორმატი, რაც seed-შია
+        createdAt: new Date().toISOString(),
+
+        visitCount: 0,
+        // ჯერ არასდროს გახსნილა. "არასდროს"-ს რა მნიშვნელობა გამოხატავს?
+        lastVisitedAt: null,
+    };
+}
+
+
+
+
+
 export function useBookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -120,7 +150,13 @@ function registerVisit(id) {
     );
 }
 
-  return { bookmarks, isLoading, error, deleteBookmark, togglePinned, toggleArchived, registerVisit };
+// useBookmarks-ის შიგნით, effect-ების ქვემოთ, return-ის ზემოთ
+function addBookmark(values) {
+    // ახალი სიის თავში — მომხმარებელს ახლადდამატებული მაშინვე უნდა დაინახოს
+    setBookmarks((current) => [createBookmark(values), ...current]);
+}
+
+  return { bookmarks, isLoading, error, deleteBookmark, togglePinned, toggleArchived, registerVisit, addBookmark };
   // ობიექტი და არა მასივი — გამომძახებელი სახელებით აიღებს, რაც სჭირდება
 }
 
