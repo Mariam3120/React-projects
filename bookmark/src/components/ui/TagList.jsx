@@ -1,12 +1,14 @@
 import { TagItem } from "./TagItem";
+import styles from "./TagList.module.css";
+
 export function TagList({ tags }) {
   if (tags.length === 0) {
     return null;
   }
   return (
-    <ul>
+    <ul className={styles.list}>
       {tags.map((tag) => (
-        <li key={tag}>
+        <li key={tag} className={styles.item}>
           <TagItem>{tag}</TagItem>
         </li>
       ))}

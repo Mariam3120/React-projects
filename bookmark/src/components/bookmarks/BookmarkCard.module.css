@@ -1,0 +1,195 @@
+/* ==========================================================================
+   BookmarkCard — a square of sponge.
+
+   Same anatomy as the Figma (icon + title + domain + menu, description,
+   tags, divider, footer stats). Only the skin changed: yellow sponge with
+   real holes, a cartoon outline and a hard cel-animation shadow.
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%; /* cards in a row end level with each other */
+  padding: var(--space-4);
+
+  /* the sponge: flat yellow, then the holes painted on top */
+  background-color: var(--color-surface);
+  background-image: var(--sponge-holes);
+
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  color: var(--color-on-surface);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- header row: avatar · title+domain · actions ------------------------- */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+
+  font-family: var(--font-display);
+  font-size: var(--font-2xl);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-on-surface);
+
+  background: #fff;
+  border: var(--outline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* the <a> that wraps the title and the domain */
+.titleLink {
+  flex: 1;
+  min-width: 0; /* lets long titles wrap instead of blowing out the grid */
+}
+
+.title {
+  font-size: var(--font-lg);
+  margin-bottom: 2px;
+  overflow-wrap: anywhere;
+}
+
+.titleLink:hover .title {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+}
+
+.host {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-on-surface-muted);
+  overflow-wrap: anywhere;
+}
+
+/* --- action buttons ------------------------------------------------------ */
+
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--space-1);
+}
+
+.actionButton {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: var(--font-sm);
+
+  background: var(--color-surface-deep);
+  border: var(--outline-thin);
+  border-radius: var(--radius-full);
+  color: inherit;
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+.actionButton:hover {
+  background: #fff;
+  transform: scale(1.15) rotate(-6deg);
+}
+
+.actionButton:active {
+  transform: scale(0.95);
+}
+
+/* the pin button when the bookmark IS pinned */
+.actionButton[aria-pressed="true"] {
+  background: var(--color-pinned);
+  border-color: var(--color-border);
+}
+
+/* --- body ---------------------------------------------------------------- */
+
+.description {
+  font-size: var(--font-sm);
+  color: var(--color-on-surface-muted);
+
+  /* clamp to 3 lines like the Figma, so cards stay even */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- footer -------------------------------------------------------------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+
+  margin-top: auto; /* pins the footer to the bottom of every card */
+  padding-top: var(--space-3);
+  border-top: 2px dashed var(--color-border-soft);
+
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-on-surface-muted);
+}
+
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+.pinBadge {
+  margin-left: auto; /* pushes it to the far right, like the Figma */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+
+  background: var(--color-pinned);
+  color: #fff;
+  border: var(--outline-thin);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --- small screens ------------------------------------------------------- */
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-3);
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-xl);
+  }
+}

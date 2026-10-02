@@ -1,0 +1,241 @@
+/* ==========================================================================
+   theme.css — Bikini Bottom design tokens
+   --------------------------------------------------------------------------
+   Every colour, size, font and radius in the app comes from here.
+   No component file should contain a raw hex code: if it does, dark mode
+   will miss it and that element will stay bright while everything else
+   goes deep-sea.
+
+   Light mode  = Bikini Bottom at noon (blue water, glowing yellow sponges)
+   Dark mode   = the deep ocean at night (navy water, sponges still glow)
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
+:root {
+  /* ---- Bikini Bottom palette (raw values — use the semantic tokens below) */
+  --bb-sponge: #f5e04f; /* SpongeBob yellow            */
+  --bb-sponge-deep: #e0c92f; /* shadowed yellow             */
+  --bb-sponge-hole: #cbb026; /* the holes in the sponge     */
+  --bb-water: #7fd6ea; /* Bikini Bottom water         */
+  --bb-water-deep: #4fb8d4; /* deeper water                */
+  --bb-abyss: #06243d; /* night ocean                 */
+  --bb-abyss-2: #0d3754; /* night ocean, one step up    */
+  --bb-patrick: #f58fae; /* Patrick pink                */
+  --bb-squidward: #6fae9f; /* Squidward teal              */
+  --bb-krabs: #d64545; /* Mr. Krabs red               */
+  --bb-pants: #8b5e34; /* SpongeBob's trousers        */
+  --bb-tie: #d63b2f; /* his tie                     */
+  --bb-shirt: #ffffff; /* his shirt                   */
+  --bb-sandy: #c98b4b; /* Sandy's suit trim           */
+  --bb-ink: #2e2415; /* cartoon outline brown       */
+  --bb-ink-soft: #6b5a3e;
+
+  /* ---- Semantic tokens: LIGHT (default) ---------------------------------- */
+  --color-bg: var(--bb-water);
+  --color-bg-deep: var(--bb-water-deep);
+
+  --color-surface: var(--bb-sponge); /* the cards — always sponge   */
+  --color-surface-deep: var(--bb-sponge-deep);
+  --color-panel: var(--bb-shirt); /* header / sidebar            */
+
+  --color-text: var(--bb-ink); /* text on the page background */
+  --color-text-muted: var(--bb-ink-soft);
+  --color-on-surface: var(--bb-ink); /* text on a yellow sponge     */
+  --color-on-surface-muted: var(--bb-ink-soft);
+
+  --color-border: var(--bb-ink);
+  --color-border-soft: rgba(46, 36, 21, 0.18);
+
+  --color-accent: var(--bb-tie); /* primary action (red tie)    */
+  --color-accent-text: var(--bb-shirt);
+  --color-danger: var(--bb-krabs);
+  --color-pinned: var(--bb-tie);
+
+  /* tag chips cycle through these four so a card reads as a crew */
+  --color-tag-1-bg: var(--bb-patrick);
+  --color-tag-2-bg: var(--bb-squidward);
+  --color-tag-3-bg: var(--bb-water-deep);
+  --color-tag-4-bg: var(--bb-sandy);
+  --color-tag-text: var(--bb-ink);
+
+  /* ---- The sponge texture ------------------------------------------------
+     A custom property can hold a whole list of gradients, so the holes are
+     defined once here and any element can wear them with:
+         background-image: var(--sponge-holes);
+     Change the hole colour in one place and every sponge updates.          */
+  --sponge-holes:
+    radial-gradient(circle at 14% 20%, var(--bb-sponge-hole) 0 7px, transparent 8px),
+    radial-gradient(circle at 78% 14%, var(--bb-sponge-hole) 0 5px, transparent 6px),
+    radial-gradient(circle at 42% 38%, var(--bb-sponge-hole) 0 9px, transparent 10px),
+    radial-gradient(circle at 88% 52%, var(--bb-sponge-hole) 0 6px, transparent 7px),
+    radial-gradient(circle at 22% 66%, var(--bb-sponge-hole) 0 8px, transparent 9px),
+    radial-gradient(circle at 62% 80%, var(--bb-sponge-hole) 0 5px, transparent 6px),
+    radial-gradient(circle at 8% 90%, var(--bb-sponge-hole) 0 6px, transparent 7px),
+    radial-gradient(circle at 92% 88%, var(--bb-sponge-hole) 0 4px, transparent 5px);
+
+  /* ---- Type -------------------------------------------------------------- */
+  --font-display: "Baloo 2", "Comic Sans MS", cursive; /* logo + headings */
+  --font-body: "Nunito", system-ui, sans-serif;
+
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.375rem;
+  --font-2xl: 1.75rem;
+  --font-3xl: 2.25rem;
+
+  /* ---- Space (4px scale) -------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ---- Shape ------------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* cartoon outline — the thing that makes it read as animation, not UI */
+  --outline: 3px solid var(--color-border);
+  --outline-thin: 2px solid var(--color-border);
+
+  /* ---- Depth -------------------------------------------------------------
+     Hard-edged offset shadows, like cel animation. No soft blur.           */
+  --shadow-sm: 3px 3px 0 var(--color-border);
+  --shadow-md: 5px 5px 0 var(--color-border);
+  --shadow-lg: 8px 8px 0 var(--color-border);
+
+  --transition: 160ms ease;
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   DARK MODE — the deep ocean at night.
+   Applied by setting data-theme="dark" on <html>, which your theme state
+   will do in a useEffect. The sponges keep glowing yellow; the water goes
+   black-blue and the panels go navy.
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --color-bg: var(--bb-abyss);
+  --color-bg-deep: #041829;
+
+  --color-surface: #ddc746; /* sponge, dimmed for night    */
+  --color-surface-deep: #c4ae35;
+  --color-panel: var(--bb-abyss-2);
+
+  --color-text: #eaf6fb; /* light text on navy water    */
+  --color-text-muted: #9dc0d4;
+  --color-on-surface: var(--bb-ink); /* still dark on the yellow    */
+  --color-on-surface-muted: var(--bb-ink-soft);
+
+  --color-border: #021220;
+  --color-border-soft: rgba(234, 246, 251, 0.2);
+
+  --color-accent: #ff6b5c;
+  --color-accent-text: #1a0b08;
+
+  --color-tag-1-bg: #d4789a;
+  --color-tag-2-bg: #58907f;
+  --color-tag-3-bg: #3f94ad;
+  --color-tag-4-bg: #a8703c;
+
+  --bb-sponge-hole: #a8912a;
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Base / reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* a vertical gradient so the page feels like water with a surface above */
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-deep) 100%
+  );
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: var(--font-md);
+  line-height: 1.55;
+  color: var(--color-text);
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Focus must stay obvious — keyboard users need to see where they are. */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect people who get motion sick. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

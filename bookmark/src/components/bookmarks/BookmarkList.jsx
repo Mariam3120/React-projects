@@ -1,21 +1,23 @@
 import { BookmarkCard } from "./BookmarkCard";
+import styles from "./BookmarkList.module.css";
+
 
 export function BookmarkList({bookmarks, onEdit, onDelete, onToggleArchived, onTogglePinned, onVisit }) {
   /* დავსვათ კითხვა არის თუ არა ეს მასივი ცარიელი? */
   if (bookmarks.length === 0) {
-    return <p>No Bookmarks found.</p>
+    return <p className={styles.empty}>No Bookmarks found.</p>
   }
   return (
-    <div>
+    <ul className={styles.list}>
       {
         bookmarks.map((bookmark)=>(
-          <BookmarkCard key={bookmark.id} bookmark={bookmark} onEdit={onEdit} onDelete={onDelete} onToggleArchived={onToggleArchived} onTogglePinned={onTogglePinned} onVisit={onVisit}/>
-          // bookmark მოდის მეპიდან, ის ლუპის ცვლადია რომელიც მოდის ახალი ყოველჯერზე,
-          //card არის მიმღები კომპონენტი რომელიც იღებს bookmark ფროფსად და ხატავს მას.
+          <li key={bookmark.id} className={styles.item}>
+            <BookmarkCard bookmark={bookmark} onEdit={onEdit} onDelete={onDelete} onToggleArchived={onToggleArchived} onTogglePinned={onTogglePinned} onVisit={onVisit}/>
+          </li>
         ))
       }
 
-    </div>
+    </ul>
   );
 }
 

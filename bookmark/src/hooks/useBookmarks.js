@@ -8,35 +8,30 @@ const SEED_URL = "/data/bookmarks.json";
 const LOADING_DELAY = 1000;
 //გარეთ გლობალურად, რადგან ისინი არასდროს იცვლებიან და ყოველ რენდერზე არაა საჭირო შეიქმნან
 
-
 function createBookmark({ title, url, description, tags }) {
-    return {
-        // უნიკალური id ბრაუზერის API-დან.
-        // შეამოწმე, რა ტიპისაა seed-ის id შენს bookmarks.json-ში
-        // და დარწმუნდი, რომ ახალიც იგივე ტიპისაა — თორემ === ვეღარ იმუშავებს
-        id: crypto.randomUUID(),
+  return {
+    // უნიკალური id ბრაუზერის API-დან.
+    // შეამოწმე, რა ტიპისაა seed-ის id შენს bookmarks.json-ში
+    // და დარწმუნდი, რომ ახალიც იგივე ტიპისაა — თორემ === ვეღარ იმუშავებს
+    id: crypto.randomUUID(),
 
-        title,
-        url,
-        description,
-        tags,
+    title,
+    url,
+    description,
+    tags,
 
-        // ახალი ჩანაწერი არც მიმაგრებულია და არც დაარქივებული
-        isPinned: false,
-        isArchived: false,
+    // ახალი ჩანაწერი არც მიმაგრებულია და არც დაარქივებული
+    isPinned: false,
+    isArchived: false,
 
-        // ახლანდელი დრო ISO ფორმატში — იგივე ფორმატი, რაც seed-შია
-        createdAt: new Date().toISOString(),
+    // ახლანდელი დრო ISO ფორმატში — იგივე ფორმატი, რაც seed-შია
+    createdAt: new Date().toISOString(),
 
-        visitCount: 0,
-        // ჯერ არასდროს გახსნილა. "არასდროს"-ს რა მნიშვნელობა გამოხატავს?
-        lastVisitedAt: null,
-    };
+    visitCount: 0,
+    // ჯერ არასდროს გახსნილა. "არასდროს"-ს რა მნიშვნელობა გამოხატავს?
+    lastVisitedAt: null,
+  };
 }
-
-
-
-
 
 export function useBookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -99,78 +94,98 @@ export function useBookmarks() {
 
   function deleteBookmark(id) {
     // აქ ფილტერში () ასეთი ფრჩხილები აბრუნებს {} ასეთს რეთურნი ჭირდება
-    setBookmarks((current) => (
-        current.filter((bookmark) => bookmark.id !== id )
-    ))
+    setBookmarks((current) => current.filter((bookmark) => bookmark.id !== id));
+  }
+
+  // changes არის ობიექტი მხოლოდ იმ ველებით, რომლებიც იცვლება:
+  // { title: "ახალი სათაური" }
+  function updateBookmark(id, changes) {
+    setBookmarks((current) =>
+      current.map((bookmark) =>
+        // რომელი ჩანაწერია საჭირო?
+        bookmark.id === id
+          ? // spread-ის რიგი მნიშვნელოვანია: რომელი უნდა იყოს მეორე,
+            // რომ ახალმა მნიშვნელობებმა ძველი გადაფაროს?
+            { ...bookmark, ...changes }
+          : // დანარჩენები უცვლელად ბრუნდება
+            bookmark,
+      ),
+    );
   }
 
   function togglePinned(id) {
-    setBookmarks((current) => 
-      current.map((bookmark) => 
-        bookmark.id === id ? {
-          ...bookmark,
-          isPinned: !bookmark.isPinned 
-          // "set isPinned to the opposite of what this bookmark's isPinned currently is."
-          //it means: if it is true make it false if it is false make it true
-        }
-        :
-        bookmark,
-
-      )
-    )
+    setBookmarks((current) =>
+      current.map((bookmark) =>
+        bookmark.id === id
+          ? {
+              ...bookmark,
+              isPinned: !bookmark.isPinned,
+              // "set isPinned to the opposite of what this bookmark's isPinned currently is."
+              //it means: if it is true make it false if it is false make it true
+            }
+          : bookmark,
+      ),
+    );
   }
   function toggleArchived(id) {
     setBookmarks((current) =>
-        current.map((bookmark) =>
-            bookmark.id === id
-                ? {
-                      ...bookmark,
-                      isArchived: !bookmark.isArchived,
-                      // არქივში გადატანისას მიმაგრება უნდა მოიხსნას:
-                      // არქივი სიის თავში არ უნდა ჩანდეს
-                      isPinned: false,
-                  }
-                : bookmark,
-        ),
+      current.map((bookmark) =>
+        bookmark.id === id
+          ? {
+              ...bookmark,
+              isArchived: !bookmark.isArchived,
+              // არქივში გადატანისას მიმაგრება უნდა მოიხსნას:
+              // არქივი სიის თავში არ უნდა ჩანდეს
+              isPinned: false,
+            }
+          : bookmark,
+      ),
     );
-}
+  }
 
-// ეს ფუნქცია მაშინ გამოიძახება, როცა მომხმარებელი ბმულს გახსნის
-function registerVisit(id) {
+  // ეს ფუნქცია მაშინ გამოიძახება, როცა მომხმარებელი ბმულს გახსნის
+  function registerVisit(id) {
     setBookmarks((current) =>
-        current.map((bookmark) =>
-            bookmark.id === id
-                ? {
-                      ...bookmark,
-                      visitCount: bookmark.visitCount + 1,
-                      lastVisitedAt: new Date().toISOString(),
-                  }
-                : bookmark,
-        ),
+      current.map((bookmark) =>
+        bookmark.id === id
+          ? {
+              ...bookmark,
+              visitCount: bookmark.visitCount + 1,
+              lastVisitedAt: new Date().toISOString(),
+            }
+          : bookmark,
+      ),
     );
-}
+  }
 
-// useBookmarks-ის შიგნით, effect-ების ქვემოთ, return-ის ზემოთ
-function addBookmark(values) {
+  // useBookmarks-ის შიგნით, effect-ების ქვემოთ, return-ის ზემოთ
+  function addBookmark(values) {
     // ახალი სიის თავში — მომხმარებელს ახლადდამატებული მაშინვე უნდა დაინახოს
     setBookmarks((current) => [createBookmark(values), ...current]);
-}
+  }
 
-  return { bookmarks, isLoading, error, deleteBookmark, togglePinned, toggleArchived, registerVisit, addBookmark };
+  return {
+    bookmarks,
+    isLoading,
+    error,
+    deleteBookmark,
+    togglePinned,
+    toggleArchived,
+    registerVisit,
+    addBookmark,
+    updateBookmark,
+  };
   // ობიექტი და არა მასივი — გამომძახებელი სახელებით აიღებს, რაც სჭირდება
 }
-
 
 // setBookmarks-ი არის state, რომელიც შეიცავს ბუკმარკების მასივს, რომელიც json ფაილიდან მოდის.
 //ამიტომ მას გადავეცით result, რომელიც არის json ფაილის კონტენტი.
 //isLoading არის state, რომელიც გვიჩვენებს არის თუ არა მონაცემები ჩატვირთული. თავდაპირველად trueა, რადგან ჯერ არაფერი ჩატვირთულა. როცა მონაცემები ჩაიტვირთება, ის false ხდება.
 //setTimeout არის იმისთვის, რომ დავაგვიანოთ მონაცემების ჩატვირთვა 1 წამით, რათა ვნახოთ loading სტატუსი. ეს არის მხოლოდ დემონსტრაციისთვის, რეალურ აპში არ არის საჭირო.
-//timeout-ში ვიძეხებთ loadBookmarks ფუნქციას, რომელიც ასინქრონულად ჩატვირთავს მონაცემებს json ფაილიდან. 1 წმ-ის დაგვიანებით, ეს ფუნქცია გამოიძახება და მონაცემები ჩაიტვირთება. 
+//timeout-ში ვიძეხებთ loadBookmarks ფუნქციას, რომელიც ასინქრონულად ჩატვირთავს მონაცემებს json ფაილიდან. 1 წმ-ის დაგვიანებით, ეს ფუნქცია გამოიძახება და მონაცემები ჩაიტვირთება.
 // თუ ჩატვირთვა წარმატებით დასრულდა, setBookmarks(data) გამოიძახება და bookmarks state განახლდება. თუ ჩატვირთვა ვერ მოხერხდა,
-//  catch ბლოკში შევდივართ და setErr(error.message) გამოიძახება, რათა შეცდომის მესიჯი შევინახოთ error state-ში. 
+//  catch ბლოკში შევდივართ და setErr(error.message) გამოიძახება, რათა შეცდომის მესიჯი შევინახოთ error state-ში.
 // ბოლოს, regardless of success or failure, finally ბლოკში setIsLoading(false) გამოიძახება, რათა loading სტატუსი false გახდეს.
-
-
 
 /*
 so this way it is called custom hook right?
@@ -182,7 +197,6 @@ Name starts with use — useBookmarks, useTheme, useLocalStorage
 It calls other hooks inside — your useState and useEffect
 Otherwise it's an ordinary JavaScript function. No special syntax, no import, nothing React-specific about the file itself.
 */
-
 
 /*
 before	!bookmark.isPinned	after

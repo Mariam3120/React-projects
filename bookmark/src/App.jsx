@@ -33,6 +33,7 @@ function App() {
     toggleArchived,
     registerVisit,
     addBookmark,
+    updateBookmark
   } = useBookmarks();
   //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს
   // აკეთებს state-ს და side effect-ს bookmark-ების ჩატვირთვისთვის და შენახვისთვის localStorage-ში.
@@ -53,6 +54,8 @@ function App() {
         onTogglePinned={togglePinned}
         onToggleArchived={toggleArchived}
         onVisit={registerVisit}
+        onEdit={(id) => updateBookmark(id, { title: "EDITED!" })}
+
       />
       <button
         onClick={() =>

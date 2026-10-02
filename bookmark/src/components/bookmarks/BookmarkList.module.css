@@ -1,0 +1,41 @@
+/* ==========================================================================
+   BookmarkList — the reef the sponges grow on.
+   ========================================================================== */
+
+.list {
+  display: grid;
+  /* auto-fill keeps the track width stable and lets columns drop 3 → 2 → 1
+     as the window narrows. (auto-fit would stretch a lone card across the
+     whole row instead — try swapping it to see the difference.) */
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: var(--space-4);
+  align-items: stretch; /* every card gets the full row height */
+}
+
+.item {
+  display: flex; /* so the card's height:100% has something to fill */
+}
+
+/* --- empty state --------------------------------------------------------- */
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: var(--space-2);
+  padding: var(--space-7) var(--space-4);
+  text-align: center;
+
+  background: var(--color-panel);
+  border: 3px dashed var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+
+.empty::before {
+  content: "🧽";
+  font-size: var(--font-3xl);
+  line-height: 1;
+}

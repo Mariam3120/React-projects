@@ -1,23 +1,26 @@
 import { TagList } from "../ui/TagList";
 import { getDomain, getAvatarLetter } from "../../utils/url.js";
 import { getFormattedDate } from "../../utils/date.js";
+import styles from "./BookmarkCard.module.css";
+
 
 export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onTogglePinned, onVisit }) {
   //object destructuring: bookmark არის ობიექტი, რომელიც მოდის ფროფსად BookmarkList-დან, სადაც ის არის ლუპის ცვლადი. აქ ჩვენ ვიღებთ bookmark ობიექტს და ვუწოდებთ მას bookmark.
   const { title, url, description, tags, isPinned, visitCount, createdAt, id } =
     bookmark;
   return (
-    <article className="card">
-      <span className="avatar" aria-hidden="true">
+    <article className={styles.card}>
+      <div className={styles.header}>
+        <span className={styles.avatar} aria-hidden="true">
         {getAvatarLetter(url)}
       </span>
-      <div className="card-header">
-        <a href={url} target="_blank" rel="noopener noreferrer" onClick={() => onVisit(id)}>
-          <h2>{title}</h2>
-          <p>{getDomain(url)}</p>
+        <a href={url} className={styles.titleLink} target="_blank" rel="noopener noreferrer" onClick={() => onVisit(id)}>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.host}>{getDomain(url)}</p>
         </a>
-        <div className="actions">
+        <div className={styles.actions}>
           <button
+            className={styles.actionButton}
             type="button"
             onClick={() => onTogglePinned(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
@@ -29,6 +32,7 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             📌
           </button>
           <button
+          className={styles.actionButton}
             type="button"
             onClick={() => onEdit(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
@@ -39,6 +43,7 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             ✏️
           </button>
           <button
+          className={styles.actionButton}
             type="button"
             onClick={() => onDelete(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
@@ -49,6 +54,7 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             🗑️
           </button>
           <button
+          className={styles.actionButton}
             type="button"
             onClick={() => onToggleArchived(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
@@ -60,9 +66,9 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
           </button>
         </div>
       </div>
-      <div>
+      
         {/* description შეიძლება ცარიელი იყოს — მაშინ <p> საერთოდ არ გვინდა */}
-        {description && <p className="card-description">{description}</p>}
+        {description && <p className={styles.description}>{description}</p>}
 
         {/* ეს დავარენდერე პირდაპირ ტაგლისტი და ფროფსად გადავეცი მასივი */}
         <TagList tags={tags} />
@@ -75,11 +81,11 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             //როგორც bookmarkList-ში, სადაც bookmark.id არის უნიკალური, აქ კი tag არის სტრინგი და ის უნიკალურია, ამიტომ შეგვიძლია გამოვიყენოთ key={tag}
           }
         </div> */}
-      </div>
-      <footer>
-        <span>Visits: {visitCount}</span>
-        <span>Created: {getFormattedDate(createdAt)}</span>
-        {isPinned && <span>Pinned</span>}
+      
+      <footer className={styles.footer}>
+        <span className={styles.stat}>Visits: {visitCount}</span>
+        <span className={styles.stat}>Created: {getFormattedDate(createdAt)}</span>
+        {isPinned && <span className={styles.pinBadge}>Pinned</span>}
       </footer>
     </article>
   );
