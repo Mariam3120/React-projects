@@ -1,6 +1,19 @@
-// import { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import { BookmarkList } from "./components/bookmarks/BookmarkList.jsx";
 import { useBookmarks } from "./hooks/useBookmarks";
+import { VIEWS, getViewOption } from "./constants/views";
+import { SORT_OPTIONS } from "./constants/sortOptions";
+import { selectBookmarks, collectTags, countByView } from "./utils/bookmarkQuery";
+import { SearchBar } from "./components/controls/SearchBar";
+import { SortSelect } from "./components/controls/SortSelect";
+import { ViewFilter } from "./components/controls/ViewFilter";
+import { TagFilter } from "./components/controls/TagFilter";
+import { Layout } from "./components/layout/Layout";
+import { Sidebar } from "./components/layout/Sidebar";
+import { Header } from "./components/layout/Header";
+import headerStyles from "./components/layout/Header.module.css";
+
+
 
 // //tests
 // saveToStorage("bookmark-manager:test", [{ id: 1 }, { id: 2 }]);
@@ -33,10 +46,29 @@ function App() {
     toggleArchived,
     registerVisit,
     addBookmark,
-    updateBookmark
+    updateBookmark,
   } = useBookmarks();
   //custom hook-ებს ასე ვიძახებთ, როგორც ჩვეულებრივ ფუნქციებს. useBookmarks-ი არის custom hook, რომელიც encapsulate-ს
   // აკეთებს state-ს და side effect-ს bookmark-ების ჩატვირთვისთვის და შენახვისთვის localStorage-ში.
+  const [view, setView] = useState(VIEWS.ALL);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [sortOption, setSortOption] = useState(SORT_OPTIONS.NEWEST);
+
+  const visibleBookmarks = useMemo(
+    () => selectBookmarks(bookmarks, { view, searchTerm, selectedTag, sortOption }),
+    // dependency array: ყველაფერი, რასაც ზემოთა ფუნქცია იყენებს
+    [bookmarks, view, searchTerm, selectedTag, sortOption],
+);
+
+const tags = useMemo(() => collectTags(bookmarks, view), [bookmarks, view]);
+const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
+
+  function handleViewChange(nextView) {
+    setView(nextView);
+    setSelectedTag(null);
+  }
+
 
   if (isLoading) {
     return <p>...Loading</p>;
@@ -46,31 +78,51 @@ function App() {
     return <p>Something went wrong.</p>;
   }
 
-  return (
-    <div>
+    return (
+    <Layout
+      sidebar={
+        <Sidebar>
+          <ViewFilter view={view} onChange={handleViewChange} counts={counts} />
+          <TagFilter
+            tags={tags}
+            selectedTag={selectedTag}
+            onSelect={setSelectedTag}
+          />
+        </Sidebar>
+      }
+      header={
+        <Header>
+          <SearchBar value={searchTerm} onChange={setSearchTerm} />
+          <button
+            type="button"
+            className={headerStyles.addButton}
+            onClick={() =>
+              addBookmark({
+                title: "Test bookmark",
+                url: "https://example.com",
+                description: "Temporary",
+                tags: ["Test"],
+              })
+            }
+          >
+            + Add Bookmark
+          </button>
+        </Header>
+      }
+      heading={getViewOption(view).heading}
+      toolbar={<SortSelect value={sortOption} onChange={setSortOption} />}
+    >
       <BookmarkList
-        bookmarks={bookmarks}
+        bookmarks={visibleBookmarks}
         onDelete={deleteBookmark}
         onTogglePinned={togglePinned}
         onToggleArchived={toggleArchived}
         onVisit={registerVisit}
         onEdit={(id) => updateBookmark(id, { title: "EDITED!" })}
-
       />
-      <button
-        onClick={() =>
-          addBookmark({
-            title: "Test bookmark",
-            url: "https://example.com",
-            description: "Temporary",
-            tags: ["Test"],
-          })
-        }
-      >
-        Add test
-      </button>
-    </div>
+    </Layout>
   );
+
 }
 
 export default App;

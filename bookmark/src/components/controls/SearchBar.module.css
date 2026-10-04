@@ -1,0 +1,89 @@
+/* ==========================================================================
+   SearchBar — the pill-shaped search field from the Figma, in sponge colours.
+   The magnifier and the clear button sit on top of the input, so the input
+   gets padding on both sides to keep the text clear of them.
+   ========================================================================== */
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 24rem;
+}
+
+/* magnifier, drawn in CSS so the component stays markup-free */
+.search::before {
+  content: "🔍";
+  position: absolute;
+  left: var(--space-3);
+  font-size: var(--font-sm);
+  pointer-events: none; /* clicks pass through to the input */
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-2) var(--space-6) var(--space-2) var(--space-7);
+
+  font-family: var(--font-body);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-on-surface);
+
+  background: #fff;
+  border: var(--outline);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.input::placeholder {
+  color: var(--color-on-surface-muted);
+  font-weight: 500;
+}
+
+.input:focus {
+  outline: none; /* replaced by the shadow below, not removed entirely */
+  box-shadow: var(--shadow-md);
+  transform: translate(-1px, -1px);
+}
+
+/* keyboard users still get the global focus ring */
+.input:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- clear button --------------------------------------------------------- */
+
+.clear {
+  position: absolute;
+  right: var(--space-2);
+
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  font-size: var(--font-xs);
+  line-height: 1;
+  color: var(--color-on-surface);
+
+  background: var(--color-surface);
+  border: var(--outline-thin);
+  border-radius: var(--radius-full);
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+.clear:hover {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  transform: rotate(90deg);
+}

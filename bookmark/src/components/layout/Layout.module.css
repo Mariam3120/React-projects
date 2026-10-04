@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Layout — the two-panel shell from the Figma.
+
+   A fixed sidebar on the left, the main panel filling the rest. Both are
+   cards floating on the water, with the cartoon outline and hard shadow.
+   ========================================================================== */
+
+.layout {
+  display: grid;
+  grid-template-columns: 15rem 1fr; /* fixed sidebar, flexible main */
+  gap: var(--space-4);
+
+  max-width: 90rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.sidebarSlot {
+  /* no max-height and no overflow: the sidebar grows to fit all its tags
+     and the page scrolls as a whole, like the Figma. align-self keeps it
+     from stretching to match a taller main panel. */
+  align-self: start;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0; /* lets the grid inside shrink instead of overflowing */
+
+  padding: var(--space-5);
+  background: var(--color-panel);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- the heading + sort row --------------------------------------------- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-size: var(--font-2xl);
+  color: var(--color-text);
+}
+
+/* --- responsive ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr; /* sidebar moves above the main panel */
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .sidebarSlot {
+    position: static;
+    max-height: none;
+  }
+
+  .main {
+    padding: var(--space-4);
+  }
+}

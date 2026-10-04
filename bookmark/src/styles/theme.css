@@ -19,6 +19,7 @@
   --bb-sponge-hole: #cbb026; /* the holes in the sponge     */
   --bb-water: #7fd6ea; /* Bikini Bottom water         */
   --bb-water-deep: #4fb8d4; /* deeper water                */
+  --bb-water-light: #aee7f5; /* sunlit shallows — panels    */
   --bb-abyss: #06243d; /* night ocean                 */
   --bb-abyss-2: #0d3754; /* night ocean, one step up    */
   --bb-patrick: #f58fae; /* Patrick pink                */
@@ -37,7 +38,7 @@
 
   --color-surface: var(--bb-sponge); /* the cards — always sponge   */
   --color-surface-deep: var(--bb-sponge-deep);
-  --color-panel: var(--bb-shirt); /* header / sidebar            */
+  --color-panel: var(--bb-water-light); /* sidebar / main panel  */
 
   --color-text: var(--bb-ink); /* text on the page background */
   --color-text-muted: var(--bb-ink-soft);

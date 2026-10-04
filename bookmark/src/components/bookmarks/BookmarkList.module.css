@@ -4,12 +4,24 @@
 
 .list {
   display: grid;
-  /* auto-fill keeps the track width stable and lets columns drop 3 → 2 → 1
-     as the window narrows. (auto-fit would stretch a lone card across the
-     whole row instead — try swapping it to see the difference.) */
-  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  /* Fixed 3 columns like the Figma, dropping to 2 then 1 as the window
+     narrows. Explicit counts rather than auto-fill, because auto-fill would
+     add a 4th column on a wide monitor. */
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
   align-items: stretch; /* every card gets the full row height */
+}
+
+@media (max-width: 1150px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .item {
