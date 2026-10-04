@@ -60,11 +60,6 @@
     gap: var(--space-3);
   }
 
-  .sidebarSlot {
-    position: static;
-    max-height: none;
-  }
-
   .main {
     padding: var(--space-4);
   }
