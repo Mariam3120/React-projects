@@ -24,20 +24,20 @@
 }
 
 .logoMark {
-  display: grid;
-  place-items: center;
   flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  font-size: var(--font-lg);
-  line-height: 1;
+  width: 38px;
+  height: 38px;
+  overflow: hidden; /* clips the square image to the rounded corners */
 
-  /* a tiny sponge, same texture as the cards */
-  background-color: var(--color-surface);
-  background-image: var(--sponge-holes);
-  background-size: 34px 34px;
   border: var(--outline-thin);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.logoMark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills the box without squashing the face */
 }
 
 .logoText {
