@@ -11,8 +11,7 @@ import { TagFilter } from "./components/controls/TagFilter";
 import { Layout } from "./components/layout/Layout";
 import { Sidebar } from "./components/layout/Sidebar";
 import { Header } from "./components/layout/Header";
-import headerStyles from "./components/layout/Header.module.css";
-
+import { Button } from "./components/ui/Button";
 
 
 // //tests
@@ -93,9 +92,8 @@ const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
       header={
         <Header>
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
-          <button
-            type="button"
-            className={headerStyles.addButton}
+          <Button
+            variant="primary"
             onClick={() =>
               addBookmark({
                 title: "Test bookmark",
@@ -106,7 +104,7 @@ const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
             }
           >
             + Add Bookmark
-          </button>
+          </Button>
         </Header>
       }
       heading={getViewOption(view).heading}

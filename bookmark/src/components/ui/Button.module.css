@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Button — one component, four roles, three sizes.
+
+   .button holds everything shared; each variant only overrides colour, and
+   each size only overrides padding and font. That split is what keeps the
+   buttons feeling like one family.
+   ========================================================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+
+  border: var(--outline);
+  border-radius: var(--radius-full);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.button:active {
+  transform: translate(0, 0);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- variants ------------------------------------------------------------ */
+
+/* the one main action on a screen */
+.primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* the default — outlined, quieter */
+.secondary {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.secondary:hover:not(:disabled) {
+  background: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* transparent until touched — for icon buttons on top of a card */
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: inherit;
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--color-surface-deep);
+  border-color: var(--color-border);
+  transform: scale(1.1);
+}
+
+/* destructive — Mr. Krabs red */
+.danger {
+  background: var(--color-danger);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.danger:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- sizes --------------------------------------------------------------- */
+
+.md {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-sm);
+}
+
+.sm {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-xs);
+}
+
+/* square, for a single icon — width must match height */
+.icon {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  font-size: var(--font-sm);
+}

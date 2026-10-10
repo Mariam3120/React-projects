@@ -1,4 +1,6 @@
 import styles from "./SearchBar.module.css";
+import { Button } from "../ui/Button";
+
 export function SearchBar({ value, onChange, placeholder = "Search bookmarks…" }) {
     return (
         <div className={styles.search}>
@@ -15,14 +17,15 @@ export function SearchBar({ value, onChange, placeholder = "Search bookmarks…"
 
             {/* გასუფთავების ღილაკი მხოლოდ მაშინ, როცა რამე აკრეფილია */}
             {value !== "" && (
-                <button
-                    type="button"
+                <Button
+                    variant="ghost"
+                    size="icon"
                     // "გასუფთავება" ნიშნავს: ცარიელი ტექსტი ამცნო მშობელს
                     onClick={() => onChange("")}
                     aria-label="Clear search"
                 >
                     ✕
-                </button>
+                </Button>
             )}
         </div>
     );

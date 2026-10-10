@@ -2,6 +2,7 @@ import { TagList } from "../ui/TagList";
 import { getDomain, getAvatarLetter } from "../../utils/url.js";
 import { getFormattedDate } from "../../utils/date.js";
 import styles from "./BookmarkCard.module.css";
+import { Button } from "../ui/Button";
 
 
 export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onTogglePinned, onVisit }) {
@@ -19,9 +20,9 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
           <p className={styles.host}>{getDomain(url)}</p>
         </a>
         <div className={styles.actions}>
-          <button
-            className={styles.actionButton}
-            type="button"
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => onTogglePinned(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
@@ -30,10 +31,10 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             aria-pressed={isPinned}
           >
             📌
-          </button>
-          <button
-          className={styles.actionButton}
-            type="button"
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => onEdit(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
@@ -41,10 +42,10 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
           >
             ✏️
-          </button>
-          <button
-          className={styles.actionButton}
-            type="button"
+          </Button>
+          <Button
+            variant="danger"
+            size="icon"
             onClick={() => onDelete(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
@@ -52,10 +53,10 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
           >
             🗑️
-          </button>
-          <button
-          className={styles.actionButton}
-            type="button"
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => onToggleArchived(id)}
             // ღილაკში მხოლოდ იკონია, ტექსტი არ წერია.
             // screen reader-ისთვის სახელი მაინც საჭიროა
@@ -63,7 +64,7 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, onToggleArchived, onT
             // მდგომარეობა მხოლოდ ფერით არ უნდა გადმოვცეთ
           >
             🗄️
-          </button>
+          </Button>
         </div>
       </div>
       
