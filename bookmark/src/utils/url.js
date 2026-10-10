@@ -24,3 +24,40 @@ export function getAvatarLetter(value) {
     return (hostname[0] ?? "?").toUpperCase();
 }
 
+// ჯერ მისამართი. მომხმარებელი დიდი ალბათობით `react.dev`-ს აკრეფს და არა `https://react.dev`-ს — ჩვენ ეს უნდა მივიღოთ და თვითონ შევავსოთ. `utils/url.js`-ს ორი ფუნქცია დაემატება:
+
+// "react.dev" → "https://react.dev"; "http://x.com" უცვლელი რჩება
+export function normalizeUrl(value) {
+    const trimmed = value.trim();
+
+    if (trimmed === "") {
+        return "";
+    }
+
+    // რეგულარული გამოსახულება: იწყება თუ არა http:// ან https://-ით?
+    // i ნიშნავს, რომ რეგისტრი არ ითვლება
+    if (/^https?:\/\//i.test(trimmed)) {
+        return trimmed;
+    }
+
+    return `https://${trimmed}`;
+}
+
+
+export function isValidUrl(value) {
+    try {
+        // ჯერ ვასწორებთ, მერე ვამოწმებთ — თორემ "react.dev" ვერ გაივლიდა
+        const parsed = new URL(normalizeUrl(value));
+
+        return (
+            // მხოლოდ ვებმისამართები: javascript: და data: არ გვინდა
+            (parsed.protocol === "https:" || parsed.protocol === "http:") &&
+            // "https://abc" ტექნიკურად ვალიდურია, მაგრამ საიტი არ არის.
+            // რა ამოწმებს, რომ დომენში წერტილია?
+            parsed.hostname.includes(".")
+        );
+    } catch {
+        return false;
+    }
+}
+

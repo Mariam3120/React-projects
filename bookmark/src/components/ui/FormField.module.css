@@ -1,0 +1,79 @@
+/* ==========================================================================
+   FormField — label, input slot, and one message line.
+
+   The input itself arrives as children, so it is styled here with an
+   element selector rather than a class: the parent shouldn't have to
+   remember to add one to every field.
+   ========================================================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer; /* htmlFor makes it clickable — show that */
+}
+
+/* every input or textarea dropped in as children */
+.field input,
+.field textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+
+  font-family: var(--font-body);
+  font-size: var(--font-sm);
+  color: var(--color-on-surface);
+
+  background: #fff;
+  border: var(--outline-thin);
+  border-radius: var(--radius-md);
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.field textarea {
+  min-height: 5.5rem;
+  resize: vertical; /* let it grow, but not sideways out of the dialog */
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* the browser exposes aria-invalid as a selector — no extra class needed */
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 8%, #fff);
+}
+
+/* --- the message line ----------------------------------------------------- */
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-danger);
+}
+
+.error::before {
+  content: "⚠️";
+}
+
+.hint {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+}

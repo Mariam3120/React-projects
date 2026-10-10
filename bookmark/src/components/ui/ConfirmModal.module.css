@@ -1,0 +1,17 @@
+/* ==========================================================================
+   ConfirmModal — adds only a message and a button row. Everything else
+   (backdrop, Escape, focus, ARIA) comes from Modal.
+   ========================================================================== */
+
+.actions {
+  display: flex;
+  justify-content: flex-end; /* both buttons sit at the right edge */
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 420px) {
+  .actions {
+    flex-direction: column-reverse; /* confirm stays the lower, harder reach */
+  }
+}

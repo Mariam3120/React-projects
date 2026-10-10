@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Modal — a porthole into the deep. The backdrop darkens the water, the
+   dialog floats on top with the same cartoon outline as everything else.
+   ========================================================================== */
+
+.backdrop {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left all 0 — covers the viewport */
+  z-index: 100;
+
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+
+  background: rgba(6, 36, 61, 0.55); /* deep-ocean navy, semi transparent */
+  backdrop-filter: blur(3px);
+
+  animation: fadeIn 160ms ease;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  width: 100%;
+  max-width: 34rem;
+  max-height: calc(100vh - var(--space-7));
+  overflow-y: auto; /* long forms scroll inside the dialog, not the page */
+  padding: var(--space-5);
+
+  background: var(--color-panel);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+
+  animation: popIn 180ms ease;
+}
+
+/* tabIndex={-1} makes this focusable in code; hide the resulting ring,
+   since focus moves straight to the first field anyway */
+.dialog:focus {
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+
+  padding-bottom: var(--space-3);
+  border-bottom: 2px dashed var(--color-border-soft);
+}
+
+.header h2 {
+  font-size: var(--font-xl);
+  color: var(--color-text);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* --- motion -------------------------------------------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+}
