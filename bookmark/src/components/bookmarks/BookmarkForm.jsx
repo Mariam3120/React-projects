@@ -10,7 +10,6 @@ import {
 } from "../../utils/validation";
 import styles from "./BookmarkForm.module.css";
 
-
 const EMPTY_VALUES = { title: "", url: "", description: "", tags: "" };
 
 // ფორმის ყველა ველი string-ია, მათ შორის tags —
@@ -79,7 +78,7 @@ export function BookmarkForm({ bookmark, onSubmit, onCancel }) {
   return (
     // noValidate ბრაუზერის საკუთარ შეტყობინებებს თიშავს —
     // ჩვენ ჩვენივე ტექსტები გვინდა, ჩვენივე ენაზე და ადგილას
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit} className={styles.form} noValidate>
       <FormField id="bookmark-title" label="Title" error={errors.title}>
         <input
           id="bookmark-title"
@@ -87,15 +86,15 @@ export function BookmarkForm({ bookmark, onSubmit, onCancel }) {
           name="title"
           value={values.title}
           onChange={handleChange}
-          // პირველი ველი ფოკუსში modal-ის გახსნისთანავე
           autoFocus
+          // პირველი ველი ფოკუსში modal-ის გახსნისთანავე
           // screen reader-ს უნდა ეცნობოს, რომ ველი არასწორია
           aria-invalid={Boolean(errors.title)}
           // და სად წერია, რატომ
           aria-describedby={errors.title ? "bookmark-title-error" : undefined}
         />
       </FormField>
-      <FormField id="bookmark-title" label="Title" error={errors.url}>
+      <FormField id="bookmark-url" label="URL" error={errors.url}>
         <input
           id="bookmark-url"
           // name უნდა ემთხვეოდეს values-ის key-ს!
@@ -104,11 +103,10 @@ export function BookmarkForm({ bookmark, onSubmit, onCancel }) {
           onChange={handleChange}
           // პირველი ველი ფოკუსში modal-ის გახსნისთანავე
           placeholder="react.dev"
-          autoFocus
           // screen reader-ს უნდა ეცნობოს, რომ ველი არასწორია
-          aria-invalid={Boolean(errors.title)}
+          aria-invalid={Boolean(errors.url)}
           // და სად წერია, რატომ
-          aria-describedby={errors.url ? "bookmark-title-error" : undefined}
+          aria-describedby={errors.url ? "bookmark-url-error" : undefined}
         />
       </FormField>
       <FormField
@@ -128,24 +126,26 @@ export function BookmarkForm({ bookmark, onSubmit, onCancel }) {
           }
         />
       </FormField>
-      <FormField id="bookmark-title" label="Title" error={errors.tags}>
-                <input
-                    id="bookmark-tags"
-                    // name უნდა ემთხვეოდეს values-ის key-ს!
-                    name="tags"
-                    value={values.tags}
-                    onChange={handleChange}
-                    placeholder="React, Frontend"
-                    hint={`Separate with commas, up to ${MAX_TAGS} tags.`}
-
-                    // პირველი ველი ფოკუსში modal-ის გახსნისთანავე
-                    autoFocus
-                    // screen reader-ს უნდა ეცნობოს, რომ ველი არასწორია
-                    aria-invalid={Boolean(errors.title)}
-                    // და სად წერია, რატომ
-                    aria-describedby={errors.tags ? "bookmark-title-error" : undefined}
-                />
-            </FormField>
+      <FormField
+        id="bookmark-tags"
+        label="Tags"
+        error={errors.tags}
+        hint={`Separate with commas, up to ${MAX_TAGS} tags.`}
+      >
+        <input
+          id="bookmark-tags"
+          // name უნდა ემთხვეოდეს values-ის key-ს!
+          name="tags"
+          value={values.tags}
+          onChange={handleChange}
+          placeholder="React, Frontend"
+          // პირველი ველი ფოკუსში modal-ის გახსნისთანავე
+          // screen reader-ს უნდა ეცნობოს, რომ ველი არასწორია
+          aria-invalid={Boolean(errors.tags)}
+          // და სად წერია, რატომ
+          aria-describedby={errors.tags ? "bookmark-tags-error" : undefined}
+        />
+      </FormField>
 
       {/* url, description (textarea), tags — იმავე ნიმუშით.
                 tags-ს hint დაუწერე: "Separate with commas, up to N tags." */}

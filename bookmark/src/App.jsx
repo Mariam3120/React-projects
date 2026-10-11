@@ -3,7 +3,11 @@ import { BookmarkList } from "./components/bookmarks/BookmarkList.jsx";
 import { useBookmarks } from "./hooks/useBookmarks";
 import { VIEWS, getViewOption } from "./constants/views";
 import { SORT_OPTIONS } from "./constants/sortOptions";
-import { selectBookmarks, collectTags, countByView } from "./utils/bookmarkQuery";
+import {
+  selectBookmarks,
+  collectTags,
+  countByView,
+} from "./utils/bookmarkQuery";
 import { SearchBar } from "./components/controls/SearchBar";
 import { SortSelect } from "./components/controls/SortSelect";
 import { ViewFilter } from "./components/controls/ViewFilter";
@@ -12,7 +16,9 @@ import { Layout } from "./components/layout/Layout";
 import { Sidebar } from "./components/layout/Sidebar";
 import { Header } from "./components/layout/Header";
 import { Button } from "./components/ui/Button";
-
+import { Modal } from "./components/ui/Modal";
+import { ConfirmModal } from "./components/ui/ConfirmModal";
+import { BookmarkForm } from "./components/bookmarks/BookmarkForm";
 
 // //tests
 // saveToStorage("bookmark-manager:test", [{ id: 1 }, { id: 2 }]);
@@ -54,20 +60,57 @@ function App() {
   const [selectedTag, setSelectedTag] = useState(null);
   const [sortOption, setSortOption] = useState(SORT_OPTIONS.NEWEST);
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editedId, setEditedId] = useState(null);
+  const [deletedId, setDeletedId] = useState(null);
+
+  // ობიექტი სიიდან გამოითვლება — ზუსტად ისე, როგორც გაფილტრული სია
+  const editedBookmark =
+    bookmarks.find((bookmark) => bookmark.id === editedId) ?? null;
+  const deletedBookmark =
+    bookmarks.find((bookmark) => bookmark.id === deletedId) ?? null;
+
   const visibleBookmarks = useMemo(
-    () => selectBookmarks(bookmarks, { view, searchTerm, selectedTag, sortOption }),
+    () =>
+      selectBookmarks(bookmarks, { view, searchTerm, selectedTag, sortOption }),
     // dependency array: ყველაფერი, რასაც ზემოთა ფუნქცია იყენებს
     [bookmarks, view, searchTerm, selectedTag, sortOption],
-);
+  );
 
-const tags = useMemo(() => collectTags(bookmarks, view), [bookmarks, view]);
-const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
+  const tags = useMemo(() => collectTags(bookmarks, view), [bookmarks, view]);
+  const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
 
   function handleViewChange(nextView) {
     setView(nextView);
     setSelectedTag(null);
   }
 
+  function handleFormSubmit(values) {
+    // ერთი ფუნქცია ორივე რეჟიმს ემსახურება
+    if (editedId === null) {
+      addBookmark(values);
+    } else {
+      updateBookmark(editedId, values);
+    }
+
+    closeForm();
+  }
+  function openAddForm() {
+    setEditedId(null);
+    setIsFormOpen(true);
+  }
+  function openEditForm(id) {
+    setEditedId(id);
+    setIsFormOpen(true);
+  }
+  function closeForm() {
+    setIsFormOpen(false);
+    setEditedId(null);
+  }
+  function handleDeleteConfirm() {
+    deleteBookmark(deletedId);
+    setDeletedId(null);
+  }
 
   if (isLoading) {
     return <p>...Loading</p>;
@@ -77,7 +120,7 @@ const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
     return <p>Something went wrong.</p>;
   }
 
-    return (
+  return (
     <Layout
       sidebar={
         <Sidebar>
@@ -92,17 +135,7 @@ const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
       header={
         <Header>
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
-          <Button
-            variant="primary"
-            onClick={() =>
-              addBookmark({
-                title: "Test bookmark",
-                url: "https://example.com",
-                description: "Temporary",
-                tags: ["Test"],
-              })
-            }
-          >
+          <Button variant="primary" onClick={openAddForm}>
             + Add Bookmark
           </Button>
         </Header>
@@ -112,15 +145,35 @@ const counts = useMemo(() => countByView(bookmarks), [bookmarks]);
     >
       <BookmarkList
         bookmarks={visibleBookmarks}
-        onDelete={deleteBookmark}
+        onDelete={setDeletedId}
         onTogglePinned={togglePinned}
         onToggleArchived={toggleArchived}
         onVisit={registerVisit}
-        onEdit={(id) => updateBookmark(id, { title: "EDITED!" })}
+        onEdit={openEditForm}
       />
+      {isFormOpen && (
+        <Modal
+          title={editedId === null ? "Add bookmark" : "Edit bookmark"}
+          onClose={closeForm}
+        >
+          <BookmarkForm
+            bookmark={editedBookmark}
+            onSubmit={handleFormSubmit}
+            onCancel={closeForm}
+          />
+        </Modal>
+      )}
+
+      {deletedId !== null && (
+        <ConfirmModal
+          title="Delete bookmark"
+          message={`“${deletedBookmark?.title}” will be removed for good.`}
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => setDeletedId(null)}
+        />
+      )}
     </Layout>
   );
-
 }
 
 export default App;
