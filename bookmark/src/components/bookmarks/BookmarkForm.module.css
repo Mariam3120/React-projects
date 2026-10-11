@@ -1,0 +1,26 @@
+/* ==========================================================================
+   BookmarkForm — four stacked fields and a button row.
+   The fields style themselves (FormField.module.css); this file only
+   handles the spacing between them.
+   ========================================================================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+
+  padding-top: var(--space-3);
+  border-top: 2px dashed var(--color-border-soft);
+}
+
+@media (max-width: 420px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+}
