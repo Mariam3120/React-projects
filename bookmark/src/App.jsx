@@ -20,26 +20,7 @@ import { Modal } from "./components/ui/Modal";
 import { ConfirmModal } from "./components/ui/ConfirmModal";
 import { BookmarkForm } from "./components/bookmarks/BookmarkForm";
 
-// //tests
-// saveToStorage("bookmark-manager:test", [{ id: 1 }, { id: 2 }]);
 
-// // 1. write + read
-// const t1 = getFromStorage("bookmark-manager:test", null);
-// console.log("T1:", t1, Array.isArray(t1));
-// //[] ეს რო გადაგვეცა rray.isArray([]) ეს თრუს ამოაგდებდა ამიტო ნალი ჯობს
-
-// // 2. missing key
-// const t2 = getFromStorage("bookmark-manager:does-not-exist", "MY FALLBACK");
-// console.log("T2:", t2 === "MY FALLBACK");
-
-// // 3. corrupted — see below
-// const t3 = getFromStorage("bookmark-manager:broken", "FALLBACK USED");
-// console.log("T3:", t3);
-//TEST2
-// console.log(getDomain("https://www.react.dev/learn"))
-// console.log(getDomain("not a url"))
-// console.log(getFormattedDate("2025-11-03T09:12:00.000Z")	)
-// console.log(getFormattedDate("გამარჯობა"))
 
 function App() {
   const {
